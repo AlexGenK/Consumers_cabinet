@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  measure_date: 2018-10-20
+  active: 1
+  reactive: 1
+  generation: 1
+
+two:
+  measure_date: 2018-10-20
+  active: 1
+  reactive: 1
+  generation: 1
