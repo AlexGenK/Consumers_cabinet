@@ -1,0 +1,19 @@
+<%= form_for consumer do |f| %>
+	<%= f.label :name,"Наименование" %>
+	<%= f.text_field :name %><br>
+	<%= f.label :edrpou,"Код ЕДРПОУ" %>
+	<%= f.text_field :edrpou %><br>
+	<%= f.label :onec_id, "Идентификатор 1С" %>
+	<%= f.number_field :onec_id %><br>
+	<%= f.label :dog_hoe_number, "Договор с ХОЭ №" %>
+	<%= f.text_field :dog_hoe_num %>
+	<%= f.label :dog_hoe_date, " от" %>
+	<%= f.date_field :dog_hoe_date %><br>
+	<%= f.label :dog_eh_number, "Договор с Энерго Х №" %>
+	<%= f.text_field :dog_eh_num %>
+	<%= f.label :dog_eh_date, " от" %>
+	<%= f.date_field :dog_eh_date %><br>
+
+
+	<%= f.submit "Создать" %>
+<% end %>

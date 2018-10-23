@@ -1,0 +1,12 @@
+<h1>Приветули!</h1>
+<%= link_to 'Новый потребитель', new_consumer_path %><br>
+<hr>
+<% @consumers.each do |consumer| %>
+	Наименование: <%= consumer.name %><br>
+	Идентификатор 1С: <%= consumer.onec_id %><br>
+	Код ЕДРПОУ: <%= consumer.edrpou %><br>
+	Договор с ХОЭ №<%= consumer.dog_hoe_num %> от <%= consumer.dog_hoe_date %><br>
+	Договор с Энерго Х №<%= consumer.dog_eh_num %> от <%= consumer.dog_eh_date %><br>
+	<%= link_to 'Удалить', consumer, method: :delete %>
+	<hr>
+<% end %>
