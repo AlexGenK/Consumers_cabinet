@@ -1,0 +1,8 @@
+Наименование: <%= @consumer.name %><br>
+Идентификатор 1С: <%= @consumer.onec_id %><br>
+Код ЕДРПОУ: <%= @consumer.edrpou %><br>
+Договор с ХОЭ №<%= @consumer.dog_hoe_num %> от <%= @consumer.dog_hoe_date %><br>
+Договор с Энерго Х №<%= @consumer.dog_eh_num %> от <%= @consumer.dog_eh_date %><br>
+<%= link_to '>>> Удалить', @consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{@consumer.name}?"} %> | 
+<%= link_to 'Редактировать', edit_consumer_path(@consumer) %> | 
+<%= link_to 'Вернуться к списку <<<', consumers_path %>

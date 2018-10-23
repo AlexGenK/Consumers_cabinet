@@ -9,6 +9,9 @@ class ConsumersController < ApplicationController
     @consumer = Consumer.new
   end
 
+  def show
+  end
+
   def create
     @consumer = Consumer.new(consumer_params)
     if @consumer.save
@@ -28,7 +31,7 @@ class ConsumersController < ApplicationController
   end
 
   def update
-    if @consumer.update(cоnsumer_params)
+    if @consumer.update(consumer_params)
         redirect_to consumers_path, notice: 'Потребитель успешно отредактирован'
       else
         flash[:alert] = 'Невозможно создать потребителя'
