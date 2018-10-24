@@ -1,8 +1,24 @@
-Наименование: <%= @consumer.name %><br>
+<h2><%= @consumer.name %></h2>
 Идентификатор 1С: <%= @consumer.onec_id %><br>
 Код ЕДРПОУ: <%= @consumer.edrpou %><br>
 Договор с ХОЭ №<%= @consumer.dog_hoe_num %> от <%= @consumer.dog_hoe_date %><br>
 Договор с Энерго Х №<%= @consumer.dog_eh_num %> от <%= @consumer.dog_eh_date %><br>
-<%= link_to '>>> Удалить', @consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{@consumer.name}?"} %> | 
-<%= link_to 'Редактировать', edit_consumer_path(@consumer) %> | 
+<%= link_to '>>> Редактировать', edit_consumer_path(@consumer) %> | 
+<%= link_to 'Удалить', @consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{@consumer.name}?"} %> | 
 <%= link_to 'Вернуться к списку <<<', consumers_path %>
+<hr>
+<h3>Список счетчиков</h3>
+<% unless @counters.empty? %>
+	<% @counters.each do |counter| %>
+		<hr>
+		<%= "Счетчик №#{counter.number}, КУ=#{counter.ratio}" %><br>
+		<%= link_to '>>> Редактировать', edit_consumer_counter_path(@consumer, counter) %> |
+		<%= link_to 'Удалить <<<', [@consumer, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" } %>
+	<% end %>
+<% else %>
+	Не введенно ни одного счетчика.
+<% end %>
+<hr>
+<h3>Добавить счетчик</h3>
+
+<%= render '/counters/form' %>

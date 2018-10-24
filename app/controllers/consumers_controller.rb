@@ -10,6 +10,8 @@ class ConsumersController < ApplicationController
   end
 
   def show
+    @counters = @consumer.counters.all.order(:number)
+    @counter = @consumer.counters.new
   end
 
   def create

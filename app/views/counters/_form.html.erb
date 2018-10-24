@@ -1,0 +1,9 @@
+<%= form_for [@consumer, @counter] do |f| %>
+	<%= f.label :number, "Номер" %><br>
+	<%= f.text_field :number %><br>
+
+	<%= f.label :ratio, "Коэффициент трансформации" %><br>
+	<%= f.number_field :ratio %><br>
+	<br>
+	<%= f.submit "Сохранить" %>
+<% end %>
