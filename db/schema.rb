@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_064222) do
+ActiveRecord::Schema.define(version: 2018_10_25_202857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2018_10_20_064222) do
     t.integer "generation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "before_active"
+    t.integer "before_reactive"
+    t.integer "before_generation"
     t.index ["counter_id"], name: "index_powers_on_counter_id"
   end
 
