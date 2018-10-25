@@ -13,6 +13,18 @@ class CountersController < ApplicationController
     redirect_to @consumer
   end
 
+  def edit
+  end
+
+  def update
+    if @counter.update(counter_params)
+        redirect_to @consumer, notice: 'Счетчик успешно отредактирован'
+      else
+        flash[:alert] = 'Невозможно отредактировать счетчик'
+        render :edit
+      end
+  end
+
   private
 
   def set_counter
