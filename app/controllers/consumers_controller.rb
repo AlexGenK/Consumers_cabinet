@@ -11,6 +11,12 @@ class ConsumersController < ApplicationController
 
   def show
     @counters = @consumer.counters.all.order(:number)
+    @counters_power={}
+    @counters.each do |item|
+      power = item.powers.where("measure_date >= ?", DateTime.now.beginning_of_month.to_date).last
+      power ||= item.powers.new(measure_date: DateTime.now)
+      @counters_power[item.id] = power
+    end
     @counter = @consumer.counters.new
   end
 

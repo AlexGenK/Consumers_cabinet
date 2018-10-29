@@ -1,0 +1,14 @@
+<%= form_for [consumer, counter, power] do |f| %>
+	<%= f.label :active, "Активная" %><br>
+	<%= f.number_field :active %><br>
+
+	<%= f.label :reactive, "Реактивная" %><br>
+	<%= f.number_field :reactive %><br>
+
+	<%= f.label :generation, "Генерация" %><br>
+	<%= f.number_field :generation %><br>
+	<%= f.date_field :measure_date %><br>
+
+	<br>
+	<%= f.submit "Сохранить" %>
+<% end %>
