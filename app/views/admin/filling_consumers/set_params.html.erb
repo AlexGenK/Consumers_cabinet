@@ -1,0 +1,16 @@
+<%= form_tag('filling_consumers', multipart: true) do %>
+	<div class='custom-file'>
+  	<%= file_field_tag :datafile, class: 'custom-file-input' %>
+  	<%= label_tag :datafile, 'Выберите файл для экспорта', class: 'custom-file-label' %>
+	</div>
+  <%= submit_tag 'Экспортировать' %>
+<% end %>
+
+<script>
+$('#datafile').on('change',function(){
+    //get the file name
+    var fileName = $(this).val().replace(/^.*[\\\/]/, '');
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName);
+})
+</script>
