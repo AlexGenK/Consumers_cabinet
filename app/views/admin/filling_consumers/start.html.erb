@@ -1,4 +1,23 @@
-<h1>Вышло</h1>
-<% @filestring.each do |item| %>
-	<p><%= item %></p>
-<% end %>
+<h1>Список импортированных потребителей</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Номер 1С</th>
+			<th>Наименование</th>
+			<th>Код ЕДРПОУ</th>
+			<th>Номер договора</th>
+			<th>Дата договора</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @csv.each do |consumer_string| %>
+		<tr>
+			<td><%= consumer_string[0] %></td>
+			<td><%= consumer_string[1] %></td>
+			<td><%= consumer_string[2] %></td>
+			<td><%= consumer_string[3] %></td>
+			<td><%= consumer_string[4] %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

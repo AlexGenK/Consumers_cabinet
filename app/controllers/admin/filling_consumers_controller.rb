@@ -1,11 +1,13 @@
 class Admin::FillingConsumersController < ApplicationController
+  require 'csv'
 
   def set_params
   end
 
   def start
-    datafile = params[:datafile].open
-    @filestring = datafile.readlines.map { |item| item.encode('UTF-8', 'Windows-1251') }
+    csv_text = params[:datafile].read.encode('UTF-8', 'Windows-1251')
+    csv_text.gsub!(/"/,'\'')
+    @csv = CSV.parse(csv_text, col_sep: ';')
   end
 
   private
