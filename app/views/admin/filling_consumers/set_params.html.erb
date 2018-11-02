@@ -1,9 +1,9 @@
 <%= form_tag('filling_consumers', multipart: true) do %>
 	<div class='custom-file'>
   	<%= file_field_tag :datafile, class: 'custom-file-input' %>
-  	<%= label_tag :datafile, 'Выберите файл для экспорта', class: 'custom-file-label' %>
+  	<%= label_tag :datafile, 'Выберите файл для импорта', class: 'custom-file-label' %>
 	</div>
-  <%= submit_tag 'Экспортировать' %>
+  <%= submit_tag 'Импортировать' %>
 <% end %>
 
 <script>

@@ -10,13 +10,13 @@
 		</tr>
 	</thead>
 	<tbody>
-	<% @csv.each do |consumer_string| %>
+	<% @imported.each do |imported_string| %>
 		<tr>
-			<td><%= consumer_string[0] %></td>
-			<td><%= consumer_string[1] %></td>
-			<td><%= consumer_string[2] %></td>
-			<td><%= consumer_string[3] %></td>
-			<td><%= consumer_string[4] %></td>
+			<td><%= imported_string[0] %></td>
+			<td><%= imported_string[1] %></td>
+			<td><%= imported_string[2] %></td>
+			<td><%= imported_string[3] %></td>
+			<td><%= imported_string[4] %></td>
 		</tr>
 	<% end %>
 	</tbody>
