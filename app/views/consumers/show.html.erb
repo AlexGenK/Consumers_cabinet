@@ -12,7 +12,6 @@
 	<% @counters.each do |counter| %>
 		<hr>
 		<%= "Счетчик №#{counter.number}, КУ=#{counter.ratio}" %><br>
-		<%= @counters_power[counter.id].measure_date %><br>
 		<%= render '/powers/form', consumer: @consumer, counter: counter, power: @counters_power[counter.id] %>
 		<%= link_to '>>> Редактировать', edit_consumer_counter_path(@consumer, counter) %> |
 		<%= link_to 'Удалить <<<', [@consumer, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" } %>
