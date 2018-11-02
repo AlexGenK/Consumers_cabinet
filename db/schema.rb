@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_202857) do
+ActiveRecord::Schema.define(version: 2018_11_02_190646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2018_10_25_202857) do
     t.integer "before_reactive"
     t.integer "before_generation"
     t.index ["counter_id"], name: "index_powers_on_counter_id"
+  end
+
+  create_table "previous_consumptions", force: :cascade do |t|
+    t.date "date"
+    t.integer "power"
+    t.float "tariff"
+    t.float "money"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
