@@ -1,0 +1,2 @@
+module Admin::FillingPlanHelper
+end

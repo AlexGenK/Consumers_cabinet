@@ -1,0 +1,21 @@
+<h3>Импортированное плановое потребление</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Потребитель</th>
+			<th class="text-right">Потребление (КВт*ч)</th>
+			<th class="text-right">Тариф (грн)</th>
+			<th class="text-right">Потребление (грн)</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @imported.each do |imported_string| %>
+		<tr>
+			<td><%= imported_string[0] %></td>
+			<td class="text-right"><%= number_with_delimiter(imported_string[1], delimiter: ' ') %></td>
+			<td class="text-right"><%= number_with_precision(imported_string[2], precision: 5) %></td>
+			<td class="text-right"><%= number_with_precision(imported_string[3], precision: 2, delimiter: ' ') %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

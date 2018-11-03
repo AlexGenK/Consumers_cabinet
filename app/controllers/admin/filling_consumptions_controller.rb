@@ -28,7 +28,7 @@ class Admin::FillingConsumptionsController < ApplicationController
 
   private
 
-  def filling_consumption_params
+  def filling_consumptions_params
     params.require(:filling_consumptions).permit(:datafile)
   end
 end
