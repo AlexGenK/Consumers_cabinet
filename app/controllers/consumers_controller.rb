@@ -11,6 +11,7 @@ class ConsumersController < ApplicationController
 
   def show
     @prev_consumptions = @consumer.previous_consumptions.all.order('date DESC')
+    @plan_consumption = @consumer.current_consumption
     @counters = @consumer.counters.all.order(:number)
     @counters_power={}
     @counters.each do |item|
