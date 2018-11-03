@@ -1,32 +1,32 @@
 <%= form_for [consumer, counter, power] do |f| %>
 	<%= f.label :active, "Активная наст." %>
-	<%= f.number_field :active %>
+	<%= f.number_field :active, step: 0.01  %>
 	<%= f.label :before_active, "пред." %>
-	<%= f.number_field :before_active %>
-	<% dif = power.active.to_i - power.before_active.to_i %>
+	<%= f.number_field :before_active, step: 0.01 %>
+	<% dif = (power.active.to_f - power.before_active.to_f).round(2) %>
 	<%= "Разность: #{dif}" %>
 	<%= "Раcход: #{dif * counter.ratio}" %>
 	<br>
 
 	<%= f.label :reactive, "Реактивная наст." %>
-	<%= f.number_field :reactive %>
+	<%= f.number_field :reactive, step: 0.01  %>
 	<%= f.label :before_reactive, "пред." %>
-	<%= f.number_field :before_reactive %>
-	<% dif = power.reactive.to_i - power.before_reactive.to_i %>
+	<%= f.number_field :before_reactive, step: 0.01  %>
+	<% dif = (power.reactive.to_f - power.before_reactive.to_f).round(2) %>
 	<%= "Разность: #{dif}" %>
 	<%= "Раcход: #{dif * counter.ratio}" %>
 	<br>
 
 	<%= f.label :generation, "Генерация наст." %>
-	<%= f.number_field :generation %>
+	<%= f.number_field :generation, step: 0.01  %>
 	<%= f.label :before_generation, "пред." %>
-	<%= f.number_field :before_generation %>
-	<% dif = power.generation.to_i - power.before_generation.to_i %>
+	<%= f.number_field :before_generation, step: 0.01  %>
+	<% dif = (power.generation.to_f - power.before_generation.to_f).round(2) %>
 	<%= "Разность: #{dif}" %>
 	<%= "Раcход: #{dif * counter.ratio}" %>
 	<br>
 
 	<%= f.date_field :measure_date %><br>
-	<br
-	<%= f.submit "Сохранить" %>
+	<br>
+	<%= f.submit "Передать показания" %>
 <% end %>
