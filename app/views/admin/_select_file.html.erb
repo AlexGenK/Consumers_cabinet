@@ -1,4 +1,4 @@
-<%= form_tag('filling_consumers', multipart: true) do %>
+<%= form_tag(operation, multipart: true) do %>
 	<div class='custom-file'>
   	<%= file_field_tag :datafile, class: 'custom-file-input' %>
   	<%= label_tag :datafile, 'Выберите файл для импорта', class: 'custom-file-label' %>
