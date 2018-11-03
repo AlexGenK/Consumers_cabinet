@@ -3,7 +3,7 @@
   	<%= file_field_tag :datafile, class: 'custom-file-input' %>
   	<%= label_tag :datafile, 'Выберите файл для импорта', class: 'custom-file-label' %>
 	</div>
-  <%= submit_tag 'Импортировать' %>
+  <%= submit_tag 'Импортировать', data: { disable_with: "Пожалуйста, подождите..." }%>
 <% end %>
 
 <script>
