@@ -7,6 +7,28 @@
 <%= link_to 'Удалить', @consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{@consumer.name}?"} %> | 
 <%= link_to 'Вернуться к списку <<<', consumers_path %>
 <hr>
+<h3>История потребления</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Период</th>
+			<th>Потребление (КВт*ч)</th>
+			<th>Тариф (грн)</th>
+			<th>Потребление (грн)</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @prev_consumptions.each do |consumption| %>
+		<tr>
+			<td><%= l(consumption.date, format: '%b %Y') %></td>
+			<td><%= number_with_delimiter(consumption.power, delimiter: ' ') %></td>
+			<td><%= number_with_precision(consumption.tariff, precision: 4) %></td>
+			<td><%= number_with_precision(consumption.money, delimiter: ' ', precision: 2) %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+<hr>
 <h3>Список счетчиков</h3>
 <% unless @counters.empty? %>
 	<% @counters.each do |counter| %>

@@ -10,6 +10,7 @@ class ConsumersController < ApplicationController
   end
 
   def show
+    @prev_consumptions = @consumer.previous_consumptions.all.order('date DESC')
     @counters = @consumer.counters.all.order(:number)
     @counters_power={}
     @counters.each do |item|
