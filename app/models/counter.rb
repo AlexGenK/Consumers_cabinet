@@ -1,5 +1,5 @@
 class Counter < ApplicationRecord
-  has_many :powers
+  has_many :powers, dependent: :destroy
   belongs_to :consumer
 
   validates :number, presence: true
