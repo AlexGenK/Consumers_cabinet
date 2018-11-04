@@ -57,7 +57,7 @@ class ConsumersController < ApplicationController
 
   def consumer_params
     params.require(:consumer).permit(:name, :edrpou, :dog_eh_num, :dog_eh_date, :dog_hoe_num, :dog_hoe_date, 
-                                    :onec_id, :report_date, :user_email, :manager_email)
+                                    :onec_id, :report_date, :user_email, :manager_email, :full_name)
   end
 
 end
