@@ -1,10 +1,33 @@
 <h3>Список потребителей</h3>
-<%= link_to 'Новый потребитель', new_consumer_path %><br>
-<hr>
-<% @consumers.each do |consumer| %>
-	<%= link_to consumer.name, consumer_path(consumer) %><br>
-	Идентификатор 1С: <%= consumer.onec_id %><br>
-	Код ЕДРПОУ: <%= consumer.edrpou %><br>
-	<%= link_to '>>> Удалить', consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{consumer.name}?"} %>
-	<hr>
+<%= link_to new_consumer_path, class: "btn btn-outline-primary" do %>
+	<i class="fas fa-plus"></i> Новый потребитель
 <% end %>
+<br>
+<br>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Наименование</th>
+			<th class="text-right">Код ЕДРПОУ</th>
+			<th class="text-right">Код 1С</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% n = 0 %>
+		<% @consumers.each do |consumer| %>
+		<tr>
+			<td><%= n += 1 %> </td>
+			<td><%= link_to consumer.name, consumer_path(consumer) %></td>
+			<td class="text-right"><%= consumer.edrpou %></td>
+			<td class="text-right"><%= consumer.onec_id %></td>
+			<td>
+			<%= link_to consumer, method: :delete, class: "btn btn-outline-danger btn-sm", data: {confirm: "Вы уверенны что хотите удалить #{consumer.name}?"} do %>
+				<i class="fas fa-times"></i>
+			<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
