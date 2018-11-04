@@ -1,32 +1,41 @@
 <%= form_for [consumer, counter, power] do |f| %>
-	<%= f.label :active, "Активная наст." %>
-	<%= f.number_field :active, step: 0.01  %>
-	<%= f.label :before_active, "пред." %>
-	<%= f.number_field :before_active, step: 0.01 %>
-	<% dif = (power.active.to_f - power.before_active.to_f).round(2) %>
-	<%= "Разность: #{dif}" %>
-	<%= "Раcход: #{dif * counter.ratio}" %>
-	<br>
-
-	<%= f.label :reactive, "Реактивная наст." %>
-	<%= f.number_field :reactive, step: 0.01  %>
-	<%= f.label :before_reactive, "пред." %>
-	<%= f.number_field :before_reactive, step: 0.01  %>
-	<% dif = (power.reactive.to_f - power.before_reactive.to_f).round(2) %>
-	<%= "Разность: #{dif}" %>
-	<%= "Раcход: #{dif * counter.ratio}" %>
-	<br>
-
-	<%= f.label :generation, "Генерация наст." %>
-	<%= f.number_field :generation, step: 0.01  %>
-	<%= f.label :before_generation, "пред." %>
-	<%= f.number_field :before_generation, step: 0.01  %>
-	<% dif = (power.generation.to_f - power.before_generation.to_f).round(2) %>
-	<%= "Разность: #{dif}" %>
-	<%= "Раcход: #{dif * counter.ratio}" %>
-	<br>
-
-	<%= f.date_field :measure_date %><br>
-	<br>
-	<%= f.submit "Передать показания" %>
+	<div class="form-row">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th class="text-center">Дата: <%= f.date_field :measure_date %></th>
+				<th class="text-center">Наст.</th>
+				<th class="text-center">Пред.</th>
+				<th class="text-center">Разность</th>
+				<th class="text-center">Расход</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Активная</th>
+				<td class="text-right"><%= f.number_field :active, step: 0.01, class: "text-right" %></td>
+				<td class="text-right"><%= f.number_field :before_active, step: 0.01, class: "text-right" %></td>
+				<td class="text-right"><%= dif = (power.active.to_f - power.before_active.to_f).round(2) %></td>
+				<td class="text-right"><%= dif * counter.ratio %></td>
+			</tr>
+			<tr>
+				<th>Реактивная</th>
+				<td class="text-right"><%= f.number_field :reactive, step: 0.01, class: "text-right"  %></td>
+				<td class="text-right"><%= f.number_field :before_reactive, step: 0.01, class: "text-right"  %></td>
+				<td class="text-right"><%= dif = (power.reactive.to_f - power.before_reactive.to_f).round(2) %></td>
+				<td class="text-right"><%= dif * counter.ratio %></td>
+			</tr>
+			<tr>
+				<th>Генерация</th>
+				<td class="text-right"><%= f.number_field :generation, step: 0.01, class: "text-right" %></td>
+				<td class="text-right"><%= f.number_field :before_generation, step: 0.01, class: "text-right" %></td>
+				<td class="text-right"><%= dif = (power.generation.to_f - power.before_generation.to_f).round(2) %></td>
+				<td class="text-right"><%= dif * counter.ratio %></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="form-row">
+	<%= f.submit "Передать показания", class: "btn btn-outline-secondary btn-block" %>
+	</div>
 <% end %>

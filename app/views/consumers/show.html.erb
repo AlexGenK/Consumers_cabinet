@@ -51,10 +51,14 @@
 <% unless @counters.empty? %>
 	<% @counters.each do |counter| %>
 		<hr>
-		<%= "Счетчик №#{counter.number}, КУ=#{counter.ratio}" %><br>
+		<b><%= "Счетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
+		<div class="btn-group">
+		<%= link_to 'Редактировать', edit_consumer_counter_path(@consumer, counter), class: "btn btn-outline-primary mb-2" %>
+		<%= link_to [@consumer, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" }, class: "btn btn-outline-danger mb-2" do %>
+			<span>&nbsp &nbsp &nbsp</span> Удалить <span>&nbsp &nbsp &nbsp</span>
+		<% end %>
+		</div>
 		<%= render '/powers/form', consumer: @consumer, counter: counter, power: @counters_power[counter.id] %>
-		<%= link_to '>>> Редактировать', edit_consumer_counter_path(@consumer, counter) %> |
-		<%= link_to 'Удалить <<<', [@consumer, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" } %>
 	<% end %>
 <% else %>
 	Не введенно ни одного счетчика.
