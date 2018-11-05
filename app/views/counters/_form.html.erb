@@ -1,9 +1,19 @@
 <%= form_for [@consumer, @counter] do |f| %>
-	<%= f.label :number, "Номер" %><br>
-	<%= f.text_field :number %><br>
+	<div class="form-row align-items-end">
+			<div class="col-auto">
+				<%= f.label :number, "Номер:" %>
+				<%= f.text_field :number, class: "form-control" %>
+			</div>
 
-	<%= f.label :ratio, "Коэффициент трансформации" %><br>
-	<%= f.number_field :ratio %><br>
-	<br>
-	<%= f.submit "Сохранить" %>
+			<div class="col-auto">
+				<%= f.label :ratio, "Коэффициент трансформации:" %>
+				<%= f.number_field :ratio, class: "form-control" %>
+			</div>
+			<div class="col-auto">
+				<%= f.button type: 'submit', class: "btn btn-outline-dark" do %>
+					<i class="fas fa-save"></i> Сохранить
+				<% end %>
+			</div>
+	</div>
+	
 <% end %>
