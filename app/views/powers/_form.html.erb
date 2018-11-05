@@ -36,6 +36,8 @@
 	</table>
 	</div>
 	<div class="form-row">
-	<%= f.submit "Передать показания", class: "btn btn-outline-secondary btn-block" %>
+	<%= f.button type: 'submit', class: "btn btn-outline-dark btn-block" do %>
+		<i class="fas fa-share-square"></i> Передать показания
+	<% end %>
 	</div>
 <% end %>
