@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = exception.message
+    flash[:alert] = "У вас нет прав на осуществление этой операции"
     redirect_back fallback_location: root_path
   end
 
