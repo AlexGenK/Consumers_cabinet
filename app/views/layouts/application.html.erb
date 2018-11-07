@@ -23,23 +23,31 @@
               <%= link_to "Потребители", consumers_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Администрирование
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                 <%= link_to "Импорт потребителей", admin_filling_consumers_path, class: "dropdown-item" %>
                 <%= link_to "Импорт потребления", admin_filling_consumptions_path, class: "dropdown-item" %>
                 <%= link_to "Импорт плана", admin_filling_plan_path, class: "dropdown-item" %>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Пользователи
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                <%= link_to "Регистрация", new_user_registration_path, class: "dropdown-item" %>
               </div>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <span class="navbar-text">
-              Пользователь: <%= current_user.username %> |
+              Пользователь: <%= current_user.username %> | 
             </span>
             <li class="nav-item">
-              <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
           <% else %>
             <li class="nav-item">
