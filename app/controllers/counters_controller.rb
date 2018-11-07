@@ -1,6 +1,7 @@
 class CountersController < ApplicationController
   before_action :set_counter, only: [:destroy, :show, :edit, :update]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
+  load_and_authorize_resource
 
   def create
     @counter = @consumer.counters.new(counter_params)

@@ -1,6 +1,8 @@
 class Admin::FillingConsumptionsController < ApplicationController
   require 'csv'
 
+  authorize_resource :class => false
+
   def set_params
   end
 

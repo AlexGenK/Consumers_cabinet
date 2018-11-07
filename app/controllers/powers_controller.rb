@@ -2,6 +2,7 @@ class PowersController < ApplicationController
   before_action :set_power, only: [:destroy, :edit, :update]
   before_action :set_counter, only: [:create, :destroy, :show, :edit, :update]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
+  load_and_authorize_resource
 
   def create
     @power = @counter.powers.new(power_params)
