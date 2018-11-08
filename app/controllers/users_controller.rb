@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :destroy]
-  before_action :set_user, only: [:update, :destroy]
+  before_action :set_user, only: [:update, :destroy, :edit]
   load_and_authorize_resource
 
   def index
     @users = User.order(:username)
+  end
+
+  def edit
   end
 
   def update

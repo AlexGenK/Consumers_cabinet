@@ -21,7 +21,7 @@
 		<% @users.each do |user| %>
 		<tr>
 			<td><%= n += 1 %> </td>
-			<td><%= link_to user.username, user_path(user) %></td>
+			<td><%= link_to user.username, edit_user_path(user) %></td>
 			<td><%= user.email %></td>
 			<td class="text-center"><%== user.admin_role? ? "<i class='fas fa-check'></i>" : "" %></td>
 			<td class="text-center"><%== user.manager_role? ? "<i class='fas fa-check'></i>" : "" %></td>

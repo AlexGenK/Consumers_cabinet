@@ -19,7 +19,10 @@ class Ability
     end
 
     if user.client_role
-        can :read, :all
+        can :read, Consumer
+        can :read, Counter
+        can :read, CurrentConsumption
+        can :read, PreviousConsumption
         can :manage, Power
     end
     
