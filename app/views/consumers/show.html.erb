@@ -54,6 +54,7 @@
 			<div class="tab-pane container fade" id="consum">
 				<br>
 				<h5>Плановое потребление <%= l(DateTime.now, format: '%B %Y') %> </h5>
+				<% if @plan_consumption %>
 				<table class="table table-striped table-sm">
 					<thead>
 						<tr>
@@ -70,6 +71,9 @@
 						</tr>
 					</tbody>
 				</table>
+				<% else %>
+					Плановое потребление не введенно
+				<% end %>
 				<hr>
 				<h5>История потребления</h5>
 				<table class="table table-striped table-sm">
