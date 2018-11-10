@@ -1,7 +1,9 @@
 class Admin::FillingConsumersController < ApplicationController
-  require 'csv'
-
+  
+  skip_before_action :verify_authenticity_token
   authorize_resource :class => false
+
+  require 'csv'
 
   def set_params
   end
