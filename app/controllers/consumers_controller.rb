@@ -39,11 +39,13 @@ class ConsumersController < ApplicationController
   end
 
   def edit
+    @managers = User.where("manager_role").collect(&:username)
+    @clients = User.where("client_role").collect(&:username)
   end
 
   def update
     if @consumer.update(consumer_params)
-        redirect_to consumers_path, notice: "Потребитель #{@consumer.name} успешно отредактирован"
+        redirect_to consumer_path(@consumer), notice: "Потребитель #{@consumer.name} успешно отредактирован"
       else
         flash[:alert] = 'Невозможно создать потребителя'
         render :edit

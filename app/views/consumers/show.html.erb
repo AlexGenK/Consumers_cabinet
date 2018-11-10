@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-3">
-		<h2><%= @consumer.name %></h2>
-		<p>Полное наименование:</p>
+		<h3><%= @consumer.name %></h3>
+		<p>Полное наименование: <em><%= @consumer.full_name %></em></p>
 		<p>Код ЕДРПОУ: <em><%= @consumer.edrpou %></em></p>
 		<p>Договор: <em>№<%= @consumer.dog_eh_num %> от <%= @consumer.dog_eh_date.strftime("%d.%m.%Y") %></em></p>
 		<p>Реквизиты для оплаты:<br><em>ООО "Энерго Х",<br>ЕДРПОУ: 38000735,<br>т/сч 2600281951118,<br>

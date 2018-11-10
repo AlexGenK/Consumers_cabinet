@@ -1,19 +1,61 @@
 <%= form_for consumer do |f| %>
-	<%= f.label :name,"Наименование" %>
-	<%= f.text_field :name %><br>
-	<%= f.label :edrpou,"Код ЕДРПОУ" %>
-	<%= f.text_field :edrpou %><br>
-	<%= f.label :onec_id, "Идентификатор 1С" %>
-	<%= f.number_field :onec_id %><br>
-	<%= f.label :dog_hoe_number, "Договор с ХОЭ №" %>
-	<%= f.text_field :dog_hoe_num %>
-	<%= f.label :dog_hoe_date, " от" %>
-	<%= f.date_field :dog_hoe_date %><br>
-	<%= f.label :dog_eh_number, "Договор с Энерго Х №" %>
-	<%= f.text_field :dog_eh_num %>
-	<%= f.label :dog_eh_date, " от" %>
-	<%= f.date_field :dog_eh_date %><br>
-
-
-	<%= f.submit "Сохранить" %>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+		<%= f.label :name,"Наименование" %>
+		<%= f.text_field :name, class: "form-control" %>
+		</div>
+		<div class="form-group col-md-6">
+		<%= f.label :full_name,"Полное наименование" %>
+		<%= f.text_field :full_name, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-4">
+		<%= f.label :edrpou,"Код ЕДРПОУ" %>
+		<%= f.text_field :edrpou, class: "form-control" %>
+		</div>
+		<div class="form-group col-md-4">
+		<%= f.label :onec_id, "Номер 1С" %>
+		<%= f.number_field :onec_id, class: "form-control" %>
+		</div>
+		<div class="form-group col-md-4">
+		<%= f.label :report_date, "Дата отчета" %>
+		<%= f.number_field :report_date, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-3">
+		<%= f.label :dog_hoe_number, "Договор с ХОЭ №" %>
+		<%= f.text_field :dog_hoe_num, class: "form-control" %>
+		</div>
+		<div class="form-group col-md-3">
+		<%= f.label :dog_hoe_date, "от" %>
+		<%= f.date_field :dog_hoe_date, class: "form-control" %>
+		</div>
+		<div class="form-group col-md-3">
+		<%= f.label :dog_eh_number, "Договор с ЭХ №" %>
+		<%= f.text_field :dog_eh_num, class: "form-control" %>
+		</div>
+		<div class="form-group col-md-3">
+		<%= f.label :dog_eh_date, "от" %>
+		<%= f.date_field :dog_eh_date, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+		<%= f.label :manager_username,"Менеджер" %>
+		<%= f.select :manager_username, @managers, {include_blank: true}, class: 'selectpicker form-control', data: { 'live-search' => 'true' } %>
+		</div>
+		<div class="form-group col-md-6">
+		<%= f.label :client_username,"Клиент" %>
+		<%= f.select :client_username, @clients, {include_blank: true}, class: 'selectpicker form-control', data: { 'live-search' => 'true' } %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="col-md-3">
+		<%= f.button type: 'submit', class: "btn btn-outline-dark btn-block" do %>
+			<i class="fas fa-save"></i> Сохранить
+		<% end %>
+		</div>
+	</div>
 <% end %>
