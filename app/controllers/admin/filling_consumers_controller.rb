@@ -16,7 +16,7 @@ class Admin::FillingConsumersController < ApplicationController
       csv.each do |record|
         unless Consumer.exists?(onec_id: record[0].to_i)
           Consumer.new(name: record[1],
-                      fullname: record[2],
+                      full_name: record[2],
                       edrpou: record[3],
                       dog_eh_num: record[4],
                       dog_eh_date: Date.strptime(record[5], '%d.%m.%y'),
