@@ -59,3 +59,9 @@
 		</div>
 	</div>
 <% end %>
+
+<script>
+$(document).on('turbolinks:load', function() {
+  $('*:not(.bootstrap-select) > .selectpicker').selectpicker('refresh');
+});
+</script>
