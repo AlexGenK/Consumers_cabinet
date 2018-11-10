@@ -1,5 +1,6 @@
 class ConsumersController < ApplicationController
   before_action :set_consumer, only: [:show, :edit, :update, :destroy]
+  before_action :set_users_list, only: [:new, :edit]
   load_and_authorize_resource
 
   def index
@@ -8,6 +9,7 @@ class ConsumersController < ApplicationController
 
   def new
     @consumer = Consumer.new
+    @consumer.manager_username = current_user.username
   end
 
   def show
@@ -39,8 +41,6 @@ class ConsumersController < ApplicationController
   end
 
   def edit
-    @managers = User.where("manager_role").collect(&:username)
-    @clients = User.where("client_role").collect(&:username)
   end
 
   def update
@@ -56,6 +56,11 @@ class ConsumersController < ApplicationController
 
   def set_consumer
     @consumer = Consumer.find(params[:id])
+  end
+
+  def set_users_list
+    @managers = User.where("manager_role").collect(&:username)
+    @clients = User.where("client_role").collect(&:username)
   end
 
   def consumer_params
