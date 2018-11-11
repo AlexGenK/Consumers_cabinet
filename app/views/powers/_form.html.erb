@@ -15,22 +15,22 @@
 				<th>Активная</th>
 				<td class="text-right"><%= f.number_field :active, step: 0.01, class: "text-right" %></td>
 				<td class="text-right"><%= f.number_field :before_active, step: 0.01, class: "text-right" %></td>
-				<td class="text-right"><%= dif = (power.active.to_f - power.before_active.to_f).round(2) %></td>
-				<td class="text-right"><%= dif * counter.ratio %></td>
+				<td class="text-right"><%= power.active_result %></td>
+				<td class="text-right"><%= power.active_result * counter.ratio %></td>
 			</tr>
 			<tr>
 				<th>Реактивная</th>
 				<td class="text-right"><%= f.number_field :reactive, step: 0.01, class: "text-right"  %></td>
 				<td class="text-right"><%= f.number_field :before_reactive, step: 0.01, class: "text-right"  %></td>
-				<td class="text-right"><%= dif = (power.reactive.to_f - power.before_reactive.to_f).round(2) %></td>
-				<td class="text-right"><%= dif * counter.ratio %></td>
+				<td class="text-right"><%= power.reactive_result %></td>
+				<td class="text-right"><%= power.reactive_result * counter.ratio %></td>
 			</tr>
 			<tr>
 				<th>Генерация</th>
 				<td class="text-right"><%= f.number_field :generation, step: 0.01, class: "text-right" %></td>
 				<td class="text-right"><%= f.number_field :before_generation, step: 0.01, class: "text-right" %></td>
-				<td class="text-right"><%= dif = (power.generation.to_f - power.before_generation.to_f).round(2) %></td>
-				<td class="text-right"><%= dif * counter.ratio %></td>
+				<td class="text-right"><%= power.generation_result %></td>
+				<td class="text-right"><%= power.generation_result * counter.ratio %></td>
 			</tr>
 		</tbody>
 	</table>
