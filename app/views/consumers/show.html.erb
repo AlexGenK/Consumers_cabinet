@@ -60,15 +60,15 @@
 					<tbody>
 						<tr>
 							<th>Активная</th>
-							<td><%= @all_power_active %></td>
+							<td class='text-right'><%= number_with_delimiter(@all_power_active, delimiter: ' ') %></td>
 						<tr>
 						<tr>
 							<th>Реактивная</th>
-							<td><%= @all_power_reactive %></td>
+							<td class='text-right'><%= number_with_delimiter(@all_power_reactive, delimiter: ' ') %></td>
 						<tr>
 						<tr>
 							<th>Генерация</th>
-							<td><%= @all_power_generation %></td>
+							<td class='text-right'><%= number_with_delimiter(@all_power_generation, delimiter: ' ') %></td>
 						<tr>
 					</tbody>
 				</table>

@@ -15,22 +15,22 @@
 				<th>Активная</th>
 				<td class="text-right"><%= f.number_field :active, step: 0.01, class: "text-right" %></td>
 				<td class="text-right"><%= f.number_field :before_active, step: 0.01, class: "text-right" %></td>
-				<td class="text-right"><%= power.active_result %></td>
-				<td class="text-right"><%= power.active_result * counter.ratio %></td>
+				<td class="text-right"><%= number_with_delimiter(power.active_result, delimiter: ' ') %></td>
+				<td class="text-right"><%= number_with_delimiter(power.active_result * counter.ratio, delimiter: ' ') %></td>
 			</tr>
 			<tr>
 				<th>Реактивная</th>
 				<td class="text-right"><%= f.number_field :reactive, step: 0.01, class: "text-right"  %></td>
 				<td class="text-right"><%= f.number_field :before_reactive, step: 0.01, class: "text-right"  %></td>
-				<td class="text-right"><%= power.reactive_result %></td>
-				<td class="text-right"><%= power.reactive_result * counter.ratio %></td>
+				<td class="text-right"><%= number_with_delimiter(power.reactive_result, delimiter: ' ') %></td>
+				<td class="text-right"><%= number_with_delimiter(power.reactive_result * counter.ratio, delimiter: ' ') %></td>
 			</tr>
 			<tr>
 				<th>Генерация</th>
 				<td class="text-right"><%= f.number_field :generation, step: 0.01, class: "text-right" %></td>
 				<td class="text-right"><%= f.number_field :before_generation, step: 0.01, class: "text-right" %></td>
-				<td class="text-right"><%= power.generation_result %></td>
-				<td class="text-right"><%= power.generation_result * counter.ratio %></td>
+				<td class="text-right"><%= number_with_delimiter(power.generation_result, delimiter: ' ') %></td>
+				<td class="text-right"><%= number_with_delimiter(power.generation_result * counter.ratio, delimiter: ' ') %></td>
 			</tr>
 		</tbody>
 	</table>
