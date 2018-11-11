@@ -1,10 +1,20 @@
 class ConsumersController < ApplicationController
   before_action :set_consumer, only: [:show, :edit, :update, :destroy]
   before_action :set_users_list, only: [:new, :edit, :create]
+  before_action :detect_invalid_user, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :denied_action
   load_and_authorize_resource
 
+
   def index
-    @consumers=Consumer.order(:name)
+    @consumers={}
+    if current_user.admin_role?
+      @consumers=Consumer.order(:name)
+    elsif current_user.manager_role?
+      @consumers=Consumer.where('manager_username = ?', current_user.username).order(:name)
+    elsif current_user.client_role?
+      @consumers=Consumer.where('client_username = ?', current_user.username).order(:name)
+    end
   end
 
   def new
@@ -70,6 +80,20 @@ class ConsumersController < ApplicationController
   def consumer_params
     params.require(:consumer).permit(:name, :edrpou, :dog_eh_num, :dog_eh_date, :dog_hoe_num, :dog_hoe_date, 
                                     :onec_id, :report_date, :client_username, :manager_username, :full_name)
+  end
+
+  def detect_invalid_user
+    unless current_user.admin_role?
+      if current_user.manager_role?
+        denied_action if @consumer.manager_username != current_user.username
+      elsif current_user.client_role?
+        denied_action if @consumer.client_username != current_user.username
+      end
+    end
+  end
+
+  def denied_action
+    redirect_to :consumers, alert: "Попытка доступа к не существующему или не принадлежащему Вам потребителю"
   end
 
 end
