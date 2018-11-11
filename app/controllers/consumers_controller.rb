@@ -29,7 +29,9 @@ class ConsumersController < ApplicationController
     @counters_power={}
     @all_power_active, @all_power_reactive, @all_power_generation = 0, 0, 0
     @counters.each do |item|
-      power = item.powers.where("measure_date >= ?", DateTime.now.beginning_of_month.to_date).last
+      power = item.powers.where("measure_date >= ? AND measure_date <= ?",
+                                DateTime.now.beginning_of_month.to_date,
+                                DateTime.now.end_of_month.to_date).last
       power ||= item.powers.new(measure_date: DateTime.now)
       @all_power_active += power.active_result * item.ratio
       @all_power_reactive += power.reactive_result * item.ratio
