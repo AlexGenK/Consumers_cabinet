@@ -10,11 +10,13 @@
 		<%= link_to consumers_path, class: "btn btn-outline-dark btn-block mb-2" do %>
 			<i class="fas fa-undo-alt"></i> Вернуться
 		<% end %>
-		<%= link_to edit_consumer_path(@consumer), class: "btn btn-outline-dark btn-block mb-2" do %>
-			<i class="fas fa-edit"></i> Редактировать
-		<% end %>
-		<%= link_to @consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{@consumer.name}?"}, class: "btn btn-outline-danger btn-block mb-2" do %>
-			<i class="fas fa-times"></i> Удалить
+		<% if can? :delete, @consumer %> 
+			<%= link_to edit_consumer_path(@consumer), class: "btn btn-outline-dark btn-block mb-2" do %>
+				<i class="fas fa-edit"></i> Редактировать
+			<% end %>
+			<%= link_to @consumer, method: :delete, data: {confirm: "Вы уверенны что хотите удалить #{@consumer.name}?"}, class: "btn btn-outline-danger btn-block mb-2" do %>
+				<i class="fas fa-times"></i> Удалить
+			<% end %>
 		<% end %>
 	</div>
 	<div class="col-md-9">
@@ -32,14 +34,16 @@
 				<% unless @counters.empty? %>
 					<% @counters.each do |counter| %>
 						<b><%= "Счетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
-						<div class="btn-group">
-						<%= link_to edit_consumer_counter_path(@consumer, counter), class: "btn btn-outline-dark mb-2" do %>
-							<i class="fas fa-edit"></i>Редактировать
+						<% if can? :delete, counter %> 
+							<div class="btn-group">
+							<%= link_to edit_consumer_counter_path(@consumer, counter), class: "btn btn-outline-dark mb-2" do %>
+								<i class="fas fa-edit"></i>Редактировать
+							<% end %>
+							<%= link_to [@consumer, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" }, class: "btn btn-outline-danger mb-2" do %>
+								&nbsp &nbsp &nbsp<i class="fas fa-times"></i> Удалить &nbsp &nbsp &nbsp
+							<% end %>
+							</div>
 						<% end %>
-						<%= link_to [@consumer, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" }, class: "btn btn-outline-danger mb-2" do %>
-							&nbsp &nbsp &nbsp<i class="fas fa-times"></i> Удалить &nbsp &nbsp &nbsp
-						<% end %>
-						</div>
 						<%= render '/powers/form', consumer: @consumer, counter: counter, power: @counters_power[counter.id] %>
 						<hr>
 					<% end %>
