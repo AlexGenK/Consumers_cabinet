@@ -17,9 +17,13 @@ class ConsumersController < ApplicationController
     @plan_consumption = @consumer.current_consumption
     @counters = @consumer.counters.all.order(:number)
     @counters_power={}
+    @all_power_active, @all_power_reactive, @all_power_generation = 0, 0, 0
     @counters.each do |item|
       power = item.powers.where("measure_date >= ?", DateTime.now.beginning_of_month.to_date).last
       power ||= item.powers.new(measure_date: DateTime.now)
+      @all_power_active += power.active_result * item.ratio
+      @all_power_reactive += power.reactive_result * item.ratio
+      @all_power_generation += power.generation_result * item.ratio
       @counters_power[item.id] = power
     end
     @counter = @consumer.counters.new
