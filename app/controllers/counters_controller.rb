@@ -1,6 +1,8 @@
 class CountersController < ApplicationController
   before_action :set_counter, only: [:destroy, :show, :edit, :update]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
+  before_action :detect_invalid_user
+  rescue_from ActiveRecord::RecordNotFound, with: :denied_action
   load_and_authorize_resource
 
   def create
@@ -38,5 +40,19 @@ class CountersController < ApplicationController
 
   def counter_params
     params.require(:counter).permit(:number, :ratio)
+  end
+
+  def detect_invalid_user
+    unless current_user.admin_role?
+      if current_user.manager_role?
+        denied_action if @consumer.manager_username != current_user.username
+      elsif current_user.client_role?
+        denied_action if @consumer.client_username != current_user.username
+      end
+    end
+  end
+
+  def denied_action
+    redirect_to :consumers, alert: "Попытка доступа к не существующему или не принадлежащему Вам счетчику"
   end
 end

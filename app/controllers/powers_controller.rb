@@ -2,6 +2,7 @@ class PowersController < ApplicationController
   before_action :set_power, only: [:destroy, :edit, :update]
   before_action :set_counter, only: [:create, :destroy, :show, :edit, :update]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
+  before_action :detect_invalid_user
   load_and_authorize_resource
 
   def create
@@ -37,5 +38,17 @@ class PowersController < ApplicationController
                                   :before_active, :before_reactive, :before_generation)
   end
 
+  def detect_invalid_user
+    unless current_user.admin_role?
+      if current_user.manager_role?
+        denied_action if @consumer.manager_username != current_user.username
+      elsif current_user.client_role?
+        denied_action if @consumer.client_username != current_user.username
+      end
+    end
+  end
 
+  def denied_action
+    redirect_to :consumers, alert: "Попытка доступа к показаниям не существующего или не принадлежащего Вам счетчика"
+  end
 end
