@@ -26,7 +26,7 @@
             <li class="nav-item">
               <%= link_to "Потребители", consumers_path, class: "nav-link" %>
             </li>
-            <% if can? :manage, User %>
+            <% if can? :index, User %>
               <li class="nav-item">
                 <%= link_to "Пользователи", users_path, class: "nav-link" %>
               </li>

@@ -15,7 +15,7 @@ class Ability
         can :manage, CurrentConsumption
         can :manage, Power
         can :manage, PreviousConsumption
-        can :manage, User
+        can [:new, :create, :index], User
     end
 
     if user.client_role
