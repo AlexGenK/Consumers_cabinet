@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+    
     <title>Кабинет потребителей</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,7 +25,9 @@
   <body>
     <div class="container">
       <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://energox.com.ua/">Энерго Х</a>
+        <a class="navbar-brand" href="http://energox.com.ua/">
+          <img src="/logow.svg" height="40" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
