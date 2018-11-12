@@ -8,6 +8,7 @@ class PowersController < ApplicationController
   def create
     @power = @counter.powers.new(power_params)
     if @power.save
+      flash[:notice] = 'Показания успешно переданы'
       @consumer.send_power_to_current
     else
       flash[:alert] = 'Невозможно передать показания счетчика'
@@ -20,7 +21,8 @@ class PowersController < ApplicationController
         @consumer.send_power_to_current
         redirect_to @consumer, notice: 'Показания успешно переданы'
       else
-        redirect_to @consumer, alert: 'Невозможно передать показания'
+        redirect_to @consumer, alert: @power.errors.messages.first[1][0]
+        # redirect_to @consumer, alert: 'Невозможно передать показания'
       end
   end
 
