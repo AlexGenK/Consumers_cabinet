@@ -5,12 +5,14 @@
 		<%= f.label :username, "Имя", class: "col-md-2 col-lg-1 col-form-label" %>
 		<div class='col-sm-5'>
 			<%= f.text_field :username, class: "form-control" %>
+			<div class="invalid-feedback">Уже зарегистрировано</div>
 		</div>
 	</div>
 	<div class='form-group row'>
 		<%= f.label :email, "E-mail", class: "col-md-2 col-lg-1 col-form-label" %>
 		<div class='col-sm-5'>
-			<%= f.text_field :email, class: "form-control" %>
+			<%= f.email_field :email, class: "form-control" %>
+			<div class="invalid-feedback">Уже зарегистрирован</div>
 		</div>
 	</div>
 	<div class="row">
