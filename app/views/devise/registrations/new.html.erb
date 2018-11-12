@@ -1,33 +1,38 @@
-<h2>Sign up</h2>
+<h2>Регистрация</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  <div class="field form-group mb-2">
+    <%= f.label :username, "Имя пользователя" %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control col-lg-3 col-md-5" %>
+    <div class="invalid-feedback">Уже зарегистрировано</div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="field form-group mb-2">
+    <%= f.label :email, "Email" %><br />
+    <%= f.email_field :email, autocomplete: "email", class: "form-control col-lg-3 col-md-5" %>
+    <div class="invalid-feedback">Уже зарегистрирован</div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field form-group mb-2">
+    <%= f.label :password, "Пароль" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(минимум <%= @minimum_password_length %> символов)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-lg-3 col-md-5" %>
+    <div class="invalid-feedback">Недопустимый пароль</div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field form-group">
+    <%= f.label :password_confirmation, "Подтверждение пароля" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-lg-3 col-md-5" %>
+    <div class="invalid-feedback">Не совпадает с паролем</div>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+  <%= f.button type: 'submit', class: "btn btn-outline-dark" do %>
+    <i class="fas fa-user-plus"></i> Зарегистрироваться
+  <% end %>
   </div>
 <% end %>
 
