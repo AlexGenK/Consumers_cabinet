@@ -1,25 +1,27 @@
-<h2>Log in</h2>
+<h2>Вход</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  <div class="field form-group mb-2">
+    <%= f.label :username, "Имя пользователя" %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control col-lg-3 col-md-5" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="field form-group">
+    <%= f.label :password, "Пароль" %><br />
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-lg-3 col-md-5" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
+    <div class="field form-group">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :remember_me, "Запомнить меня" %>
     </div>
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+  <%= f.button type: 'submit', class: "btn btn-outline-dark" do %>
+    &nbsp &nbsp <i class="fas fa-sign-in-alt"></i> Войти &nbsp &nbsp
+  <% end %>
   </div>
 <% end %>
 
