@@ -6,24 +6,32 @@ class PowersController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @power = @counter.powers.new(power_params)
-    if @power.save
-      flash[:notice] = 'Показания успешно переданы'
-      @consumer.send_power_to_current
+    unless date_is_correct?
+      flash[:alert] = "Невозможно передать отчет раньше #{@consumer.report_date} числа"
     else
-      flash[:alert] = 'Невозможно передать показания счетчика'
+      @power = @counter.powers.new(power_params)
+      if @power.save
+        flash[:notice] = 'Показания успешно переданы'
+        @consumer.send_power_to_current
+      else
+        flash[:alert] = 'Невозможно передать показания счетчика'
+      end
     end
     redirect_to @consumer
   end
 
   def update
-    if @power.update(power_params)
+    unless date_is_correct?
+      flash[:alert] = "Невозможно передать отчет раньше #{@consumer.report_date} числа"
+    else
+      if @power.update(power_params)
         @consumer.send_power_to_current
-        redirect_to @consumer, notice: 'Показания успешно переданы'
+        flash[:notice] = 'Показания успешно переданы'
       else
-        redirect_to @consumer, alert: @power.errors.messages.first[1][0]
-        # redirect_to @consumer, alert: 'Невозможно передать показания'
+        flash[:alert] = @power.errors.messages.first[1][0]
       end
+    end
+    redirect_to @consumer
   end
 
   private
@@ -53,6 +61,11 @@ class PowersController < ApplicationController
         denied_action if @consumer.client_username != current_user.username
       end
     end
+  end
+
+  def date_is_correct?
+    report_date = @consumer.report_date || 1
+    (power_params[:measure_date].to_date.day >= report_date) && (Time.now.day >= report_date)
   end
 
   def denied_action
