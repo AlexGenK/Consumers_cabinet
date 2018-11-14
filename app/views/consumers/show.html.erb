@@ -73,8 +73,10 @@
 					</tbody>
 				</table>
 				<hr>
-				<h5>Добавить счетчик</h5>
-				<%= render '/counters/form' %>
+				<% if can? :create, counter %>
+					<h5>Добавить счетчик</h5>
+					<%= render '/counters/form' %>
+				<% end %>
 				<br>
 			</div>
 			<div class="tab-pane container fade" id="consum">
