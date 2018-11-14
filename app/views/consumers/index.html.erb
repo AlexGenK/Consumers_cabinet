@@ -11,6 +11,7 @@
 		<tr>
 			<th>#</th>
 			<th>Наименование</th>
+			<th class="text-right">Потребление передано</th>
 			<th class="text-right">Код ЕДРПОУ</th>
 			<% if can? :delete, Consumer %>
 				<th class="text-right">Код 1С</th>
@@ -24,6 +25,7 @@
 		<tr>
 			<td><%= n += 1 %> </td>
 			<td><%= link_to consumer.name, consumer_path(consumer) %></td>
+			<td class="text-right"><%= consumer.current_consumption.updated_at.strftime('%d.%m.%Y') if consumer.current_consumption.transferred %></td>
 			<td class="text-right"><%= consumer.edrpou %></td>
 			<% if can? :delete, Consumer %>
 				<td class="text-right"><%= consumer.onec_id %></td>
