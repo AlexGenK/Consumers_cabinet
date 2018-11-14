@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_091834) do
+ActiveRecord::Schema.define(version: 2018_11_14_190121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_091834) do
     t.float "money"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "transferred", default: false
     t.index ["consumer_id"], name: "index_current_consumptions_on_consumer_id"
   end
 
