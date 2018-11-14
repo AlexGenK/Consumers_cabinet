@@ -25,7 +25,11 @@
 		<tr>
 			<td><%= n += 1 %> </td>
 			<td><%= link_to consumer.name, consumer_path(consumer) %></td>
-			<td class="text-right"><%= consumer.current_consumption.updated_at.strftime('%d.%m.%Y') if consumer.current_consumption.transferred %></td>
+			<td class="text-right">
+			<% if consumer.current_consumption && consumer.current_consumption.transferred %>
+				<%= consumer.current_consumption.updated_at.strftime('%d.%m.%Y') %>
+			<% end %>
+			</td>
 			<td class="text-right"><%= consumer.edrpou %></td>
 			<% if can? :delete, Consumer %>
 				<td class="text-right"><%= consumer.onec_id %></td>

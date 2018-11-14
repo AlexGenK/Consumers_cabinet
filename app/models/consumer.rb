@@ -22,7 +22,7 @@ class Consumer < ApplicationRecord
       all_money = all_power * @cur_cons.tariff * 1.2
       @cur_cons.update(power: all_power, money: all_money, transferred: true)
     else
-      self.current_consumption.new(power: all_power, transferred: true)
+      self.build_current_consumption(power: all_power, transferred: true, tariff: 0).save
     end
   end
 end
