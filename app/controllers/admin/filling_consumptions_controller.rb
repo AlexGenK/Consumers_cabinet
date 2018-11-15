@@ -16,7 +16,7 @@ class Admin::FillingConsumptionsController < ApplicationController
       PreviousConsumption.delete_all
       csv.each do |record|
         @consumer = Consumer.find_by(onec_id: record[0].to_i)
-        if @consumer
+        if @consumer && (record[2].to_i > 0)
           @consumer.previous_consumptions.new(date: Date.strptime(record[1], '%d.%m.%y'),
                                               power: record[2].to_i,
                                               tariff: record[3].to_f,

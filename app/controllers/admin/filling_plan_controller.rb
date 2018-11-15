@@ -16,7 +16,7 @@ class Admin::FillingPlanController < ApplicationController
       CurrentConsumption.delete_all
       csv.each do |record|
         @consumer = Consumer.find_by(onec_id: record[0].to_i)
-        if @consumer
+        if @consumer && (record[1].to_i > 0)
           @cur_pow = @consumer.build_current_consumption(power: record[1].to_i,
                                                         tariff: record[2].to_f,
                                                         money: record[3].to_f)
