@@ -11,5 +11,9 @@ FactoryBot.define do
     manager_username    { 'manager@mail.no' }
     report_date         { 25 }
     full_name           { 'ЧП Пупкин А.Б.' }
+
+    after :create do |consumer|
+        create :current_consumption, consumer: consumer
+    end
   end
 end
