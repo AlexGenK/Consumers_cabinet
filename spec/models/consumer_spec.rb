@@ -23,7 +23,7 @@ RSpec.describe Consumer, type: :model do
   end
 
   it "is not valid when 1C Id is not unique" do
-    create(:consumer, name: 'ЧП Попкин С.В.')
+    create(:consumer, name: 'Попкин ЧП')
     expect(subject).to_not be_valid
   end
 end
