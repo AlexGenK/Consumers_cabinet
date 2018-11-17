@@ -1,5 +1,7 @@
 class ClientNotifierMailer < ApplicationMailer
-  def send_email
-    mail(to: ENV['TEST_EMAIL'], subject: 'Напоминание о подаче отчета')
+  def send_email(consumer, user)
+    @consumer=consumer
+    @user=user
+    mail(to: @user.email, subject: 'Напоминание о подаче отчета')
   end
 end
