@@ -42,9 +42,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
-  domain:               'energoh.com.ua',
-  user_name:            ENV['CONSUMERS_EMAIL'],
-  password:             ENV['CONSUMERS_PASS'],
+  domain:               'energox.com.ua',
+  user_name:            ENV['CONSUMERS_CABINET_EMAIL'],
+  password:             ENV['CONSUMERS_CABINET_EMAIL_PASSWORD'],
   authentication:       'plain',
   enable_starttls_auto: true  }
 
