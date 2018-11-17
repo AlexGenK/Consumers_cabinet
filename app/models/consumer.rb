@@ -9,12 +9,7 @@ class Consumer < ApplicationRecord
   def send_power_to_current
     all_power = 0
     self.counters.all.each do |counter|
-      power = counter.powers.where("measure_date >= ? AND measure_date <= ?",
-                                  DateTime.now.beginning_of_month.to_date,
-                                  DateTime.now.end_of_month.to_date).last
-      all_power += ((power.active_result * counter.ratio) +
-                   (power.reactive_result * counter.ratio) +
-                   (power.generation_result * counter.ratio)).round
+      all_power += counter.all_current_power
     end
     all_power = all_power.round
     @cur_cons = self.current_consumption
