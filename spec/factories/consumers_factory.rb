@@ -14,6 +14,7 @@ FactoryBot.define do
 
     after :create do |consumer|
         create :current_consumption, consumer: consumer
+        create_list :previous_consumption, 6, consumer: consumer
     end
   end
 end
