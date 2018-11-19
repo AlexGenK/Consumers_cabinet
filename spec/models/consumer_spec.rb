@@ -18,12 +18,14 @@ RSpec.describe Consumer, type: :model do
   end
 
   it "is not valid when name is not unique" do
-    create(:consumer, onec_id: 124)
+    create(:consumer, name: 'Company LTD')
+    subject.name = 'Company LTD'
     expect(subject).to_not be_valid
   end
 
   it "is not valid when 1C Id is not unique" do
-    create(:consumer, name: 'Попкин ЧП')
+    create(:consumer, onec_id: 101)
+    subject.onec_id = 101
     expect(subject).to_not be_valid
   end
 end
