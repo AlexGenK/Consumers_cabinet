@@ -25,6 +25,7 @@ class ConsumersController < ApplicationController
   def show
     @prev_consumptions = @consumer.previous_consumptions.all.order('date DESC')
     @plan_consumption = @consumer.current_consumption
+    @contracts = @consumer.contracts.all.order(:number) 
     @counters = @consumer.counters.all.order(:number)
     @counters_power={}
     @all_power_active, @all_power_reactive, @all_power_generation = 0, 0, 0
@@ -39,6 +40,7 @@ class ConsumersController < ApplicationController
       @counters_power[item.id] = power
     end
     @counter = @consumer.counters.new
+    @contract = @consumer.contracts.new
   end
 
   def create

@@ -11,6 +11,7 @@ class Ability
 
     if user.manager_role?
         can :manage, Consumer
+        can :manage, Contract
         can :manage, Counter
         can :manage, CurrentConsumption
         can :manage, Power
@@ -20,6 +21,7 @@ class Ability
 
     if user.client_role
         can :read, Consumer
+        can :read, Contract
         can :read, Counter
         can :read, CurrentConsumption
         can :read, PreviousConsumption

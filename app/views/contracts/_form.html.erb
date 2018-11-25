@@ -1,0 +1,17 @@
+<%= form_for [@consumer, @contract] do |f| %>
+	<div class="form-row align-items-end">
+			<div class="col-auto">
+				<%= f.label :number, "Номер:" %>
+				<%= f.text_field :number, class: "form-control" %>
+			</div>
+			<div class="col-auto">
+				<%= f.label :date, "Дата:" %>
+				<%= f.date_field :date, class: "form-control" %>
+			</div>
+			<div class="col-auto">
+				<%= f.button type: 'submit', class: "btn btn-outline-dark" do %>
+					<i class="fas fa-save"></i> Сохранить
+				<% end %>
+			</div>
+	</div>
+<% end %>
