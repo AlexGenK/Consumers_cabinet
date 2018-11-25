@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_190121) do
+ActiveRecord::Schema.define(version: 2018_11_25_144919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 2018_11_14_190121) do
     t.string "edrpou"
     t.string "dog_eh_num"
     t.date "dog_eh_date"
-    t.string "dog_hoe_num"
-    t.date "dog_hoe_date"
     t.integer "onec_id"
     t.string "client_username"
     t.string "manager_username"

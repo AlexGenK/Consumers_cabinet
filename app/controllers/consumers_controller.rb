@@ -80,8 +80,9 @@ class ConsumersController < ApplicationController
   end
 
   def consumer_params
-    params.require(:consumer).permit(:name, :edrpou, :dog_eh_num, :dog_eh_date, :dog_hoe_num, :dog_hoe_date, 
-                                    :onec_id, :report_date, :client_username, :manager_username, :full_name)
+    params.require(:consumer).permit(:name, :edrpou, :dog_eh_num, :dog_eh_date, 
+                                      :onec_id, :report_date, :client_username, 
+                                      :manager_username, :full_name)
   end
 
   def detect_invalid_user

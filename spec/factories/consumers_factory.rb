@@ -4,8 +4,6 @@ FactoryBot.define do
     edrpou                  { '01234567' }
     dog_eh_num              { '1/2' }
     dog_eh_date             { '12/05/2005' }
-    dog_hoe_num             { '10/12' }
-    dog_hoe_date            { '24/01/2005' }
     sequence(:onec_id)      { |n| n }
     client_username         { 'client' }
     manager_username        { 'manager' }
