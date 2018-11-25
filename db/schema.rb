@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_144919) do
+ActiveRecord::Schema.define(version: 2018_11_25_151409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_11_25_144919) do
     t.integer "ratio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "account"
     t.index ["consumer_id"], name: "index_counters_on_consumer_id"
   end
 

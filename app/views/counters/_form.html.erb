@@ -1,10 +1,13 @@
 <%= form_for [@consumer, @counter] do |f| %>
 	<div class="form-row align-items-end">
 			<div class="col-auto">
+				<%= f.label :acount, "Лиц. счет:" %>
+				<%= f.text_field :account, class: "form-control" %>
+			</div>
+			<div class="col-auto">
 				<%= f.label :number, "Номер:" %>
 				<%= f.text_field :number, class: "form-control" %>
 			</div>
-
 			<div class="col-auto">
 				<%= f.label :ratio, "Коэффициент трансформации:" %>
 				<%= f.number_field :ratio, class: "form-control" %>
