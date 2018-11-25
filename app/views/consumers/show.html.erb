@@ -38,7 +38,9 @@
 							<tr>
 								<th>Номер</th>
 								<th>Дата</th>
+								<% if can? :delete, Contract %>
 								<th></th>
+								<% end %>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,7 +48,13 @@
 							<tr>
 								<td><%= contract.number %></td>
 								<td><%= contract.date.strftime("%d.%m.%Y") %></td>
-								<td>
+								<% if can? :delete, Contract %>
+								<td class='text-right'>
+									<%= link_to [@consumer, contract], method: :delete, class: "btn btn-outline-danger btn-sm", data: {confirm: "Вы уверенны что хотите удалить Договор №#{contract.number}?"} do %>
+										<i class="fas fa-times"></i>
+									<% end %>
+								</td>
+								<% end %>
 							</tr>
 							<% end %>
 						</tbody>

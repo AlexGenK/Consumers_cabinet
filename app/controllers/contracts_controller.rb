@@ -9,10 +9,15 @@ class ContractsController < ApplicationController
     redirect_to @consumer
   end
 
+  def destroy
+    flash[:alert] = 'Невозможно удалить догвор' unless @contract.destroy
+    redirect_to @consumer
+  end
+
   private
 
   def set_contract
-    @counter = Contract.find(params[:id])
+    @contract = Contract.find(params[:id])
   end
 
   def set_consumer
