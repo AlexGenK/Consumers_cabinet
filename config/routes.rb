@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :users
   
   resources :consumers do
-    resources :contracts
-    resources :counters do
-      resources :powers
+    resources :contracts do
+      resources :counters do
+        resources :powers
+      end
     end
   end
 

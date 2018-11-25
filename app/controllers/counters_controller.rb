@@ -1,19 +1,20 @@
 class CountersController < ApplicationController
   before_action :set_counter, only: [:destroy, :show, :edit, :update]
+  before_action :set_contract, only: [:create, :destroy]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
   before_action :detect_invalid_user
   rescue_from ActiveRecord::RecordNotFound, with: :denied_action
   load_and_authorize_resource
 
   def create
-    @counter = @consumer.counters.new(counter_params)
-    flash[:alert] = 'Невозможно создать счетчик' unless @counter.save
-    redirect_to @consumer
+    @counter = @contract.counters.new(counter_params)
+    flash[:alert] = 'Невозможно создать счетчик' unless @counter.save!
+    redirect_to [@consumer, @contract]
   end
 
   def destroy
     flash[:alert] = 'Невозможно удалить счетчик' unless @counter.destroy
-    redirect_to @consumer
+    redirect_to [@consumer, @contract]
   end
 
   def edit
@@ -32,6 +33,10 @@ class CountersController < ApplicationController
 
   def set_counter
     @counter = Counter.find(params[:id])
+  end
+
+  def set_contract
+    @contract = Contract.find(params[:contract_id])
   end
 
   def set_consumer

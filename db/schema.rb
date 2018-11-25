@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_165315) do
+ActiveRecord::Schema.define(version: 2018_11_25_213621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 2018_11_25_165315) do
   end
 
   create_table "counters", force: :cascade do |t|
-    t.bigint "consumer_id"
     t.integer "number"
     t.integer "ratio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "account"
-    t.index ["consumer_id"], name: "index_counters_on_consumer_id"
+    t.bigint "contract_id"
+    t.index ["contract_id"], name: "index_counters_on_contract_id"
   end
 
   create_table "current_consumptions", force: :cascade do |t|
@@ -101,5 +101,6 @@ ActiveRecord::Schema.define(version: 2018_11_25_165315) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "counters", "contracts"
   add_foreign_key "previous_consumptions", "consumers"
 end

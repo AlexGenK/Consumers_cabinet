@@ -7,7 +7,7 @@
 		<p>Реквизиты для оплаты:<br><em>ООО "Энерго Х",<br>ЕДРПОУ: 38000735,<br>т/сч 2600281951118,<br>
 		ПАО "Банк "Грант", МФО 351607</em></p>
 		<p>Идентификатор 1С: <em><%= @consumer.onec_id %></em></p>
-		<%= link_to consumers_path, class: "btn btn-outline-dark btn-block mb-2" do %>
+		<%= link_to @consumer, class: "btn btn-outline-dark btn-block mb-2" do %>
 			<i class="fas fa-undo-alt"></i> Вернуться
 		<% end %>
 		<% if can? :delete, @consumer %> 
@@ -31,43 +31,54 @@
 		<div class="tab-content">
 			<div class="tab-pane container active" id="send">
 				<br>
-				<h5>Договора с облэнерго</h5>
-				<% unless @contracts.empty? %>
-					<table class="table table-striped table-sm">
-						<thead>
-							<tr>
-								<th>Номер</th>
-								<th>Дата</th>
-								<% if can? :delete, Contract %>
-								<th></th>
-								<% end %>
-							</tr>
-						</thead>
-						<tbody>
-							<% @contracts.each do |contract| %>
-							<tr>
-								<td><%= link_to contract.number, [@consumer, contract] %></td>
-								<td><%= contract.date ? contract.date.strftime("%d.%m.%Y") : '' %></td>
-								<% if can? :delete, Contract %>
-								<td class='text-right'>
-									<%= link_to [@consumer, contract], method: :delete, class: "btn btn-outline-danger btn-sm", data: {confirm: "Вы уверенны что хотите удалить Договор №#{contract.number}?"} do %>
-										<i class="fas fa-times"></i>
-									<% end %>
-								</td>
-								<% end %>
-							</tr>
+				<h5><%= "Передача показаний по договору N#{@contract.number}" %></h5>
+				<% unless @counters.empty? %>
+					<% @counters.each do |counter| %>
+						<b><%= "Счет №#{counter.account}, Счетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
+						<% if can? :delete, counter %> 
+							<div class="btn-group">
+							<%= link_to edit_consumer_contract_counter_path(@consumer, @contract, counter), class: "btn btn-outline-dark mb-2" do %>
+								<i class="fas fa-edit"></i>Редактировать
 							<% end %>
-						</tbody>
-					</table>
+							<%= link_to [@consumer, @contract, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" }, class: "btn btn-outline-danger mb-2" do %>
+								&nbsp &nbsp &nbsp<i class="fas fa-times"></i> Удалить &nbsp &nbsp &nbsp
+							<% end %>
+							</div>
+						<% end %>
+						<%= render '/powers/newform', consumer: @consumer, contract: @contract, counter: counter, power: @counters_power[counter.id] %>
+						<hr>
+					<% end %>
 				<% else %>
-					Не введенно ни одного договора
+					Не введенно ни одного счетчика.
 					<hr>
 				<% end %>
+				<table class="table table-bordered col-sm-6">
+					<thead>
+						<tr>
+							<th colspan="2" class='text-center'>Всего</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Активная</th>
+							<td class='text-right'><%= number_with_delimiter(@all_power_active, delimiter: ' ') %></td>
+						<tr>
+						<tr>
+							<th>Реактивная</th>
+							<td class='text-right'><%= number_with_delimiter(@all_power_reactive, delimiter: ' ') %></td>
+						<tr>
+						<tr>
+							<th>Генерация</th>
+							<td class='text-right'><%= number_with_delimiter(@all_power_generation, delimiter: ' ') %></td>
+						<tr>
+					</tbody>
+				</table>
+				<hr>
 				<% if can? :create, Counter %>
-					<h5>Добавить договор</h5>
-					<%= render '/contracts/form' %>
-					<hr>
+					<h5>Добавить счетчик</h5>
+					<%= render '/counters/newform' %>
 				<% end %>
+				<br>
 			</div>
 			<div class="tab-pane container fade" id="consum">
 				<br>
