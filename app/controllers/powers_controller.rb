@@ -1,6 +1,7 @@
 class PowersController < ApplicationController
   before_action :set_power, only: [:destroy, :edit, :update]
   before_action :set_counter, only: [:create, :destroy, :show, :edit, :update]
+  before_action :set_contract, only: [:create, :update]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
   before_action :detect_invalid_user
   load_and_authorize_resource
@@ -17,7 +18,7 @@ class PowersController < ApplicationController
         flash[:alert] = 'Невозможно передать показания счетчика'
       end
     end
-    redirect_to @consumer
+    redirect_to [@consumer, @contract]
   end
 
   def update
@@ -31,13 +32,17 @@ class PowersController < ApplicationController
         flash[:alert] = @power.errors.messages.first[1][0]
       end
     end
-    redirect_to @consumer
+    redirect_to [@consumer, @contract]
   end
 
   private
 
   def set_consumer
     @consumer = Consumer.find(params[:consumer_id])
+  end
+
+  def set_contract
+    @contract = Contract.find(params[:contract_id])
   end
 
   def set_counter
