@@ -9,3 +9,8 @@ body {
     margin-top: -10px;
     margin-bottom: -5px;
 }
+
+@font-face {
+  font-family: "Arial";
+  src: url(asset-path('Arial.ttf')) format("truetype");
+}
