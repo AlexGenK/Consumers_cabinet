@@ -31,10 +31,11 @@
 		<div class="tab-content">
 			<div class="tab-pane container active" id="send">
 				<br>
-				<h5><%= "Передача показаний по договору N#{@contract.number}" %></h5>
+				<h5 class='text-center'><%= "Передача показаний по договору N#{@contract.number}" %></h5>
+				<br>
 				<% unless @counters.empty? %>
 					<% @counters.each do |counter| %>
-						<b><%= "Счет №#{counter.account}, Счетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
+						<b><%= "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
 						<% if can? :delete, counter %> 
 							<div class="btn-group">
 							<%= link_to edit_consumer_contract_counter_path(@consumer, @contract, counter), class: "btn btn-outline-dark mb-2" do %>
@@ -52,7 +53,7 @@
 					Не введенно ни одного счетчика.
 					<hr>
 				<% end %>
-				<table class="table table-bordered col-sm-6">
+				<table class="table table-bordered table-sm col-sm-6">
 					<thead>
 						<tr>
 							<th colspan="2" class='text-center'>Всего</th>
