@@ -8,8 +8,10 @@ class Consumer < ApplicationRecord
 
   def send_power_to_current
     all_power = 0
-    self.counters.all.each do |counter|
-      all_power += counter.all_current_power
+    self.contracts.all.each do |contract|
+      contract.counters.all.each do |counter|
+        all_power += counter.all_current_power
+      end
     end
     all_power = all_power.round
     @cur_cons = self.current_consumption
