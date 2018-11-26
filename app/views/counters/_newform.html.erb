@@ -1,19 +1,19 @@
 <%= form_for [@consumer, @contract, @counter] do |f| %>
 	<div class="form-row align-items-end">
-			<div class="col-auto">
+			<div class="col-sm-3">
 				<%= f.label :acount, "Лиц. счет:" %>
 				<%= f.text_field :account, class: "form-control" %>
 			</div>
-			<div class="col-auto">
+			<div class="col-sm-3">
 				<%= f.label :number, "Номер:" %>
 				<%= f.text_field :number, class: "form-control" %>
 			</div>
-			<div class="col-auto">
-				<%= f.label :ratio, "Коэффициент трансформации:" %>
+			<div class="col-sm-3">
+				<%= f.label :ratio, "Коэффициент учета:" %>
 				<%= f.number_field :ratio, class: "form-control" %>
 			</div>
-			<div class="col-auto">
-				<%= f.button type: 'submit', class: "btn btn-outline-dark" do %>
+			<div class="col-sm-3">
+				<%= f.button type: 'submit', class: "btn btn-outline-dark btn-block" do %>
 					<i class="fas fa-save"></i> Сохранить
 				<% end %>
 			</div>
