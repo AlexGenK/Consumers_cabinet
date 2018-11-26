@@ -29,6 +29,7 @@ gem 'devise'
 gem 'cancancan', '~> 2.0'
 
 gem 'prawn'
+gem 'prawn-table'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
