@@ -31,6 +31,15 @@ class ContractsController < ApplicationController
       @counters_power[item.id] = power
     end
     @counter = @contract.counters.new
+    respond_to do |format|
+      format.html { render :show }
+      format.pdf do
+        send_data @contract.pdf_report(DateTime.now).render,
+                  filename: "#{@contract.number}_#{DateTime.now.strftime('%Y_%m')}_report.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
+      end
+    end
   end
 
   private

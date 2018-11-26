@@ -63,17 +63,20 @@
 						<tr>
 							<th>Активная</th>
 							<td class='text-right'><%= number_with_delimiter(@all_power_active, delimiter: ' ') %></td>
-						<tr>
+						</tr>
 						<tr>
 							<th>Реактивная</th>
 							<td class='text-right'><%= number_with_delimiter(@all_power_reactive, delimiter: ' ') %></td>
-						<tr>
+						</tr>
 						<tr>
 							<th>Генерация</th>
 							<td class='text-right'><%= number_with_delimiter(@all_power_generation, delimiter: ' ') %></td>
-						<tr>
+						</tr>
 					</tbody>
 				</table>
+				<%= link_to consumer_contract_path(:format => :pdf), class: "btn btn-outline-dark btn-block mb-6", target: :_blank do %>
+					<i class="fas fa-print"></i> Печать отчета
+				<% end %>
 				<hr>
 				<% if can? :create, Counter %>
 					<h5>Добавить счетчик</h5>
