@@ -8,7 +8,7 @@ class CountersController < ApplicationController
 
   def create
     @counter = @contract.counters.new(counter_params)
-    flash[:alert] = 'Невозможно создать счетчик' unless @counter.save!
+    flash[:alert] = 'Невозможно создать счетчик' unless @counter.save
     redirect_to [@consumer, @contract]
   end
 
