@@ -1,6 +1,6 @@
 class CountersController < ApplicationController
-  before_action :set_counter, only: [:destroy, :show, :edit, :update]
-  before_action :set_contract, only: [:create, :destroy]
+  before_action :set_counter, only: [:destroy, :edit, :update]
+  before_action :set_contract, only: [:create, :destroy, :edit, :update]
   before_action :set_consumer, only: [:create, :destroy, :edit, :update]
   before_action :detect_invalid_user
   rescue_from ActiveRecord::RecordNotFound, with: :denied_action
@@ -22,7 +22,7 @@ class CountersController < ApplicationController
 
   def update
     if @counter.update(counter_params)
-        redirect_to @consumer, notice: 'Счетчик успешно отредактирован'
+        redirect_to [@consumer, @contract], notice: 'Счетчик успешно отредактирован'
       else
         flash[:alert] = 'Невозможно отредактировать счетчик'
         render :edit
