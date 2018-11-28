@@ -1,6 +1,6 @@
 class ContractsController < ApplicationController
-  before_action :set_contract, only: [:destroy, :show]
-  before_action :set_consumer, only: [:create, :destroy, :show]
+  before_action :set_contract, only: [:destroy, :show, :edit, :update]
+  before_action :set_consumer, only: [:create, :destroy, :show, :edit, :update ]
   load_and_authorize_resource
 
   def create
@@ -12,6 +12,18 @@ class ContractsController < ApplicationController
   def destroy
     flash[:alert] = 'Невозможно удалить догвор' unless @contract.destroy
     redirect_to @consumer
+  end
+
+  def edit
+  end
+
+  def update
+    if @contract.update(contract_params)
+      redirect_to @consumer, notice: "Договор №#{@contract.number} успешно отредактирован"
+    else
+      flash[:alert] = 'Невозможно отредактировать договор'
+      render :edit
+    end
   end
 
   def show

@@ -22,11 +22,11 @@ class CountersController < ApplicationController
 
   def update
     if @counter.update(counter_params)
-        redirect_to [@consumer, @contract], notice: 'Счетчик успешно отредактирован'
-      else
-        flash[:alert] = 'Невозможно отредактировать счетчик'
-        render :edit
-      end
+      redirect_to [@consumer, @contract], notice: 'Счетчик успешно отредактирован'
+    else
+      flash[:alert] = 'Невозможно отредактировать счетчик'
+      render :edit
+    end
   end
 
   private
