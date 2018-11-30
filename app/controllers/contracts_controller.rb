@@ -27,8 +27,6 @@ class ContractsController < ApplicationController
   end
 
   def show
-    @prev_consumptions = @consumer.previous_consumptions.all.order('date DESC')
-    @plan_consumption = @consumer.current_consumption
     @counters = @contract.counters.all.order(:number)
     @counters_power={}
     @all_power_active, @all_power_reactive, @all_power_generation = 0, 0, 0
@@ -46,7 +44,8 @@ class ContractsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.pdf do
-        send_data @contract.pdf_report(DateTime.now).render,
+        archive_data = params[:archive_data].blank? ? DateTime.now : DateTime.strptime(params[:archive_data], "%Y-%m-%d")
+        send_data @contract.pdf_report(archive_data).render,
                   filename: "#{@contract.number}_#{DateTime.now.strftime('%Y_%m')}_report.pdf",
                   type: 'application/pdf',
                   disposition: 'inline'
