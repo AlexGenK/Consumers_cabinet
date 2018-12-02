@@ -34,7 +34,17 @@ class ContractsController < ApplicationController
       power = item.powers.where("measure_date >= ? AND measure_date <= ?",
                                 DateTime.now.beginning_of_month.to_date,
                                 DateTime.now.end_of_month.to_date).last
-      power ||= item.powers.new(measure_date: DateTime.now)
+      prew_power = item.powers.where("measure_date >= ? AND measure_date <= ?",
+                                DateTime.now.prev_month.beginning_of_month.to_date,
+                                DateTime.now.prev_month.end_of_month.to_date).last
+      prew_power ||= item.powers.new(measure_date: DateTime.now.prev_month)
+      power ||= item.powers.new(measure_date: DateTime.now,
+                                active: prew_power.active,
+                                reactive: prew_power.reactive,
+                                generation: prew_power.generation,
+                                before_active: prew_power.active,
+                                before_reactive: prew_power.reactive,
+                                before_generation: prew_power.generation)
       @all_power_active += power.active_result * item.ratio
       @all_power_reactive += power.reactive_result * item.ratio
       @all_power_generation += power.generation_result * item.ratio
