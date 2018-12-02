@@ -5,23 +5,30 @@ class Contract < ApplicationRecord
   def pdf_report(rep_date)
       pdf = Prawn::Document.new
       pdf.font Rails.root.join("app/assets/fonts/arial.ttf")
+      pdf.text "Сведения о расходе электроэнергии за #{I18n.l(rep_date, format: '%B %Y')}"
+      pdf.move_down 2
       pdf.text consumer.full_name
-      pdf.move_down 20
-      pdf.text "Отчет за #{I18n.l(rep_date, format: '%B %Y')} по дог. №#{number}"
       pdf.move_down 20
       pdf.font_size 8
       @counters = counters.all.order(:number)
       @all_power_active, @all_power_reactive, @all_power_generation = 0, 0, 0
       @table = []
-      @table << ['', '', 'Наст.', 'Пред.', 'Разность', 'Расход']
+      @table << ['№ дог-ра', '№ лиц.счета', '№ эл.сч-ка', '', 'наст.', 'пред.', 'Разность', 'к-т', 'Расход']
+      @table << [number, '', '', '', '', '', '', '', '']
       @counters.each do |item|
         power = item.powers.where("measure_date >= ? AND measure_date <= ?",
                                 rep_date.beginning_of_month.to_date,
                                 rep_date.end_of_month.to_date).last
         if power
-          @table << ["Счетчик №#{item.number}, КУ=#{item.ratio}", 'Активная', "#{power.active}", "#{power.before_active}", "#{power.active_result}", "#{power.active_result * item.ratio}"]
-          @table << ['', 'Реактивная', "#{power.reactive}", "#{power.before_reactive}", "#{power.reactive_result}", "#{power.reactive_result * item.ratio}"]
-          @table << ['', 'Генерация', "#{power.generation}", "#{power.before_generation}", "#{power.generation_result}", "#{power.generation_result * item.ratio}"]
+          @table << ['', item.account, item.number, 'активная', 
+                    power.active, power.before_active, power.active_result, 
+                    item.ratio, power.active_result * item.ratio]
+          @table << ['', '', '', 'реактивная', 
+                    power.reactive, power.before_reactive, power.reactive_result, 
+                    item.ratio, power.reactive_result * item.ratio]
+          @table << ['', '', '', 'генерация', 
+                    power.generation, power.before_generation, power.generation_result, 
+                    item.ratio, power.generation_result * item.ratio]
 
           @all_power_active += power.active_result * item.ratio
           @all_power_reactive += power.reactive_result * item.ratio
