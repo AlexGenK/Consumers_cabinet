@@ -13,7 +13,7 @@ FactoryBot.define do
     after :create do |consumer|
         create :current_consumption, consumer: consumer
         create_list :previous_consumption, 6, consumer: consumer
-        create_list :counter, 3, consumer: consumer
+        create_list :contract, 3, consumer: consumer
     end
   end
 end
