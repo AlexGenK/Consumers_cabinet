@@ -23,7 +23,7 @@ class ConsumersController < ApplicationController
   end
 
   def show
-    @prev_consumptions = @consumer.previous_consumptions.all.order('date DESC')
+    @prev_consumptions = @consumer.previous_consumptions.all.order('date DESC, level, point_name')
     @plan_consumption = @consumer.current_consumption
     @contracts = @consumer.contracts.all.order(:number) 
     @contract = @consumer.contracts.new
