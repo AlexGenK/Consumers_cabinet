@@ -10,17 +10,20 @@ class Admin::FillingConsumptionsController < ApplicationController
 
   def start
     begin
-      csv_text = params[:datafile].read.encode('UTF-8', 'Windows-1251').gsub(/"/,'\'')
+      # csv_text = params[:datafile].read.encode('UTF-8', 'Windows-1251').gsub(/"/,'\'')
+      csv_text = params[:datafile].read.gsub(/"/,'\'')
       csv = CSV.parse(csv_text, col_sep: ';')
       @imported = 0
       PreviousConsumption.delete_all
       csv.each do |record|
         @consumer = Consumer.find_by(onec_id: record[0].to_i)
         if @consumer && (record[2].to_i > 0)
-          @consumer.previous_consumptions.new(date: Date.strptime(record[1], '%d.%m.%y'),
-                                              power: record[2].to_i,
-                                              tariff: record[3].to_f,
-                                              money: record[4].to_f).save
+          @consumer.previous_consumptions.new(date:       Date.strptime(record[1], '%d.%m.%y'),
+                                              power:      record[2].to_i,
+                                              tariff:     record[3].to_f,
+                                              money:      record[4].to_f,
+                                              level:      record[5].to_i,
+                                              point_name: record[6]).save
           @imported += 1
         end
       end
