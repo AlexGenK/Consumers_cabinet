@@ -54,7 +54,7 @@ class ContractsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.pdf do
-        archive_data = params[:archive_data].blank? ? DateTime.now : DateTime.strptime(params[:archive_data], "%Y-%m-%d")
+        archive_data = params[:archive_data].blank? ? DateTime.now : DateTime.strptime(params[:archive_data], "%m/%Y")
         send_data @contract.pdf_report(archive_data).render,
                   filename: "#{@contract.number}_#{DateTime.now.strftime('%Y_%m')}_report.pdf",
                   type: 'application/pdf',

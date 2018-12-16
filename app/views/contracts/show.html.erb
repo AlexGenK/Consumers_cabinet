@@ -89,7 +89,7 @@
 				<h5>Дата отчета:</h5>
 				<%= form_tag(consumer_contract_path(:format => :pdf), method: "get", id: "archive-form") do %>
 					<div class='input-group'>
-						<%= date_field_tag :archive_data, params[:archive_data], class: "form-control" %>
+						<%= text_field_tag :archive_data, params[:archive_data], class: "form-control datetimepicker-input", id: 'archdate', data: { toggle: "datetimepicker", target: "#archdate"} %>
 						<span class='input-group-append'>
 						<%= submit_tag "Найти", class: "btn btn-outline-secondary", formtarget: :_blank, data: { disable_with: false } %>
 						</span>
@@ -99,3 +99,21 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+    	var today = new Date();
+    	var mm = today.getMonth() + 1;
+    	var yy = today.getFullYear();
+    	strdate = mm + "/1/" + yy;
+        $('#archdate').datetimepicker({
+        	defaultDate: strdate,
+            viewMode: 'years',
+            format: 'MM/YYYY',
+            widgetPositioning: {
+            	horizontal: 'right',
+            	vertical: 'auto'
+            }
+        });
+    });
+</script>
