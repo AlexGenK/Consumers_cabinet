@@ -11,6 +11,7 @@ $(document).on 'turbolinks:load', ->
     defaultDate: strdate
     viewMode: 'years'
     format: 'MM/YYYY'
+    locale: 'ru'
     widgetPositioning:
       horizontal: 'right'
       vertical: 'auto'
