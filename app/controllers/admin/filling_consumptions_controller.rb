@@ -10,8 +10,7 @@ class Admin::FillingConsumptionsController < ApplicationController
 
   def start
     begin
-      # csv_text = params[:datafile].read.encode('UTF-8', 'Windows-1251').gsub(/"/,'\'')
-      csv_text = params[:datafile].read.gsub(/"/,'\'')
+      csv_text = params[:datafile].read.encode('UTF-8', 'Windows-1251').gsub(/"/,'\'')
       csv = CSV.parse(csv_text, col_sep: ';')
       @imported = 0
       PreviousConsumption.delete_all
