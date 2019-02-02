@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_02_063613) do
+ActiveRecord::Schema.define(version: 2019_02_02_160323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,14 +62,14 @@ ActiveRecord::Schema.define(version: 2019_02_02_063613) do
   create_table "powers", force: :cascade do |t|
     t.bigint "counter_id"
     t.date "measure_date"
-    t.decimal "active", precision: 10, scale: 2, default: "0.0"
-    t.decimal "reactive", precision: 10, scale: 2, default: "0.0"
-    t.decimal "generation", precision: 10, scale: 2, default: "0.0"
+    t.decimal "active", precision: 10, scale: 3, default: "0.0"
+    t.decimal "reactive", precision: 10, scale: 3, default: "0.0"
+    t.decimal "generation", precision: 10, scale: 3, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "before_active", precision: 10, scale: 2, default: "0.0"
-    t.decimal "before_reactive", precision: 10, scale: 2, default: "0.0"
-    t.decimal "before_generation", precision: 10, scale: 2, default: "0.0"
+    t.decimal "before_active", precision: 10, scale: 3, default: "0.0"
+    t.decimal "before_reactive", precision: 10, scale: 3, default: "0.0"
+    t.decimal "before_generation", precision: 10, scale: 3, default: "0.0"
     t.index ["counter_id"], name: "index_powers_on_counter_id"
   end
 
