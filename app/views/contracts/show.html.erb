@@ -46,7 +46,7 @@
 							<% end %>
 							</div>
 						<% end %>
-						<%= render '/powers/newform', consumer: @consumer, contract: @contract, counter: counter, power: @counters_power[counter.id] %>
+						<%= render '/powers/form', consumer: @consumer, contract: @contract, counter: counter, power: @counters_power[counter.id] %>
 						<hr>
 					<% end %>
 				<% else %>
