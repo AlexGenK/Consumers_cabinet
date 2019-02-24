@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post 'filling_consumptions',  to: 'filling_consumptions#start'
     get 'filling_plan',           to: 'filling_plan#set_params'
     post 'filling_plan',          to: 'filling_plan#start'
+    get 'statistic',              to: 'statistic#consumers_counter'
   end
 
   root to: 'consumers#index'
