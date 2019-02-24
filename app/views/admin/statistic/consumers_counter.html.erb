@@ -1,8 +1,32 @@
-<div class="card">
-  <div class="card-header">
-    Количество потребителей
-  </div>
-  <div class="card-body">
-    <p class="card-text">Количество потребителей, пользующихся кабинетом.</p>
-  </div>
+<div class="row">
+	<div class="col-lg-6 col-md-12">
+		<div class="card">
+			<div class="card-header">
+				Количество потребителей, пользующихся кабинетом
+			</div>
+			<div class="card-body">
+				<table class="table table-hover">
+					<thead>
+					<th scope="col">#</th>
+					<th scope="col">Менеджер</th>
+					<th scope="col">Потребители</th>
+					</thead>
+					<tbody>
+						<% @n = 1 %>
+						<% @consumers_count.each do |manager, count| %>
+						<tr>
+							<th scope="row"><%= @n %></th>
+							<td><%= manager %></td>
+							<td><%= count %></td>
+						</tr>
+						<% @n += 1 %>
+					<% end %>
+					<th scope="row"></th>
+					<th>Итого:</th>
+					<th><%= @consumers_sum %></th>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
