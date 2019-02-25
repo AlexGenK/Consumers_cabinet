@@ -59,6 +59,9 @@
                 </div>
               </li>
             <% end %>
+            <li class="nav-item">
+              <%= link_to "Руководство", root_path << 'manual.pdf', target: :_blank, class: "nav-link" %>
+            </li>
           </ul>
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
