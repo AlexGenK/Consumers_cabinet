@@ -63,8 +63,8 @@ class ConsumersController < ApplicationController
   end
 
   def set_users_list
-    @managers = User.where("manager_role").collect(&:username)
-    @clients = User.where("client_role").collect(&:username)
+    @managers = User.where("manager_role").order(:username).collect(&:username)
+    @clients = User.where("client_role").order(:username).collect(&:username)
   end
 
   def consumer_params
