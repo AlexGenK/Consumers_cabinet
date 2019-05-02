@@ -1,6 +1,6 @@
 <%= form_for [@consumer, @contract, @counter] do |f| %>
 	<div class="form-row align-items-end">
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<%= f.label :acount, "Лиц. счет:" %>
 				<%= f.text_field :account, class: "form-control" %>
 			</div>
@@ -8,9 +8,13 @@
 				<%= f.label :number, "Номер:" %>
 				<%= f.text_field :number, class: "form-control" %>
 			</div>
-			<div class="col-sm-3">
-				<%= f.label :ratio, "Коэффициент учета:" %>
+			<div class="col-sm-2">
+				<%= f.label :ratio, "Коэф. учета:" %>
 				<%= f.number_field :ratio, class: "form-control" %>
+			</div>
+			<div class="col-sm-2">
+				<%= f.label :count_out, "Отсчёт:" %>
+				<%= f.check_box :count_out, class: "form-control" %>
 			</div>
 			<div class="col-sm-3">
 				<%= f.button type: 'submit', class: "btn btn-outline-dark btn-block" do %>

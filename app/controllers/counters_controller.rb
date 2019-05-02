@@ -44,7 +44,7 @@ class CountersController < ApplicationController
   end
 
   def counter_params
-    params.require(:counter).permit(:number, :ratio, :account)
+    params.require(:counter).permit(:number, :ratio, :account, :count_out)
   end
 
   def detect_invalid_user
