@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_02_160323) do
+ActiveRecord::Schema.define(version: 2019_05_02_181916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_02_02_160323) do
     t.datetime "updated_at", null: false
     t.string "account"
     t.bigint "contract_id"
+    t.boolean "count_out", default: false
     t.index ["contract_id"], name: "index_counters_on_contract_id"
   end
 
