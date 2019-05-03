@@ -35,17 +35,19 @@
 				<br>
 				<% unless @counters.empty? %>
 					<% @counters.each do |counter| %>
-						<b><%= "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
+					<div class="row">
+						<b class='col-lg-5 col-xl-7'><%= "Счет №#{counter.account}, #{counter.count_out ? 'отсчитывающий' : ''} cчетчик №#{counter.number}, КУ=#{counter.ratio}." %></b>
 						<% if can? :delete, counter %> 
-							<div class="btn-group">
+							<div class="btn-group col-lg-7 col-xl-5">
 							<%= link_to edit_consumer_contract_counter_path(@consumer, @contract, counter), class: "btn btn-outline-dark mb-2" do %>
 								<i class="fas fa-edit"></i>Редактировать
 							<% end %>
 							<%= link_to [@consumer, @contract, counter], method: :delete, data: { confirm: "Вы уверены что хотите удалить счетчик №#{counter.number}?" }, class: "btn btn-outline-danger mb-2" do %>
-								&nbsp &nbsp &nbsp<i class="fas fa-times"></i> Удалить &nbsp &nbsp &nbsp
+								<i class="fas fa-times"></i> Удалить
 							<% end %>
 							</div>
 						<% end %>
+					</div>
 						<%= render '/powers/form', consumer: @consumer, contract: @contract, counter: counter, power: @counters_power[counter.id] %>
 						<hr>
 					<% end %>
