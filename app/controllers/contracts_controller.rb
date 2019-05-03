@@ -45,9 +45,10 @@ class ContractsController < ApplicationController
                                 before_active: prew_power.active,
                                 before_reactive: prew_power.reactive,
                                 before_generation: prew_power.generation)
-      @all_power_active += power.active_result * item.ratio
-      @all_power_reactive += power.reactive_result * item.ratio
-      @all_power_generation += power.generation_result * item.ratio
+      count_out_factor = item.count_out ? -1 : 1
+      @all_power_active += power.active_result * item.ratio * count_out_factor
+      @all_power_reactive += power.reactive_result * item.ratio * count_out_factor
+      @all_power_generation += power.generation_result * item.ratio * count_out_factor
       @counters_power[item.id] = power
     end
     @counter = @contract.counters.new
