@@ -20,8 +20,8 @@ class Contract < ApplicationRecord
                                 rep_date.beginning_of_month.to_date,
                                 rep_date.end_of_month.to_date).last
         if power
-          @table << ['', item.account, item.number, 'активная', 
-                    power.active, power.before_active, power.active_result, 
+          @table << ['', item.account, "#{item.number} #{item.count_out ? ' (отсчитывающий)' : ''}", 
+                    'активная', power.active, power.before_active, power.active_result, 
                     item.ratio, power.active_result * item.ratio]
           @table << ['', '', '', 'реактивная', 
                     power.reactive, power.before_reactive, power.reactive_result, 
@@ -30,9 +30,10 @@ class Contract < ApplicationRecord
                     power.generation, power.before_generation, power.generation_result, 
                     item.ratio, power.generation_result * item.ratio]
 
-          @all_power_active += power.active_result * item.ratio
-          @all_power_reactive += power.reactive_result * item.ratio
-          @all_power_generation += power.generation_result * item.ratio
+          count_out_factor = item.count_out ? -1 : 1
+          @all_power_active += power.active_result * item.ratio * count_out_factor
+          @all_power_reactive += power.reactive_result * item.ratio * count_out_factor
+          @all_power_generation += power.generation_result * item.ratio * count_out_factor
         end
       end
       pdf.table(@table) do |t|
