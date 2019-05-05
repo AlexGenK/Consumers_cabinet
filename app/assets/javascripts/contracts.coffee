@@ -4,9 +4,9 @@
 
 $(document).on 'turbolinks:load', ->
   today = new Date
-  mm = today.getMonth() + 1
+  mm = ('0' + (today.getMonth() + 1)).slice(-2)
   yy = today.getFullYear()
-  strdate = mm + '/1/' + yy
+  strdate = yy + '-' + mm + '-01'
   $('#archdate').datetimepicker
     defaultDate: strdate
     viewMode: 'years'
