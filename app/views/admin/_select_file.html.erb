@@ -5,7 +5,8 @@
 	</div>
 	<br>
 	<br>
-  	<%= submit_tag 'Импортировать', class: 'btn btn-outline-primary', data: { disable_with: "Пожалуйста, подождите..." }%>
+  	<%= button_tag 'Импортировать', class: 'btn btn-outline-primary', 
+  	data: { disable_with: '<span class="spinner-border spinner-border-sm"></span> Пожалуйста, подождите...'.html_safe} %>
 <% end %>
 
 <script>
