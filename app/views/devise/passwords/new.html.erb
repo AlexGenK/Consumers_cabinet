@@ -4,11 +4,11 @@
 
   <div class="field form-group mb-2">
     <%= f.label :email, 'Email' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-xl-4 col-lg-5" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Отправьте мне инструкцию по сбросу пароля", class: "btn btn-outline-dark col-xl-4 col-lg-5" %>
   </div>
 <% end %>
 
