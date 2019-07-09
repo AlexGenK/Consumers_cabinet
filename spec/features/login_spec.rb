@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'View homepage and access to the consumers informations', type: :feature do
+feature 'Login on homepage', type: :feature do
   before do 
     @user = create(:user_admin)
     visit root_path
