@@ -5,8 +5,8 @@ FactoryBot.define do
     dog_eh_num              { '1/2' }
     dog_eh_date             { '12/05/2005' }
     sequence(:onec_id)      { |n| n }
-    client_username         { 'client' }
-    manager_username        { 'manager' }
+    client_username         { build(:user_client).username }
+    manager_username        { build(:user_manager).username }
     report_date             { 25 }
     sequence(:full_name)    { |n| "#{n} LTD & Co" }
 
