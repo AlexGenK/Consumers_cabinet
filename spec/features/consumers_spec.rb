@@ -5,10 +5,13 @@ feature 'Access to consumers', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Superadmin' do
-		before do 
+		before do
+			login_as FactoryBot.create(:user_admin), :scope => :user
+			visit root_path 
 		end
 
 		scenario 'The Visitor is viewing full consumers index' do
+			expect(page).to have_content 'Пользователь: admin'
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
@@ -30,9 +33,12 @@ feature 'Access to consumers', type: :feature do
 
 	context 'When Visitor is logged in as Manager' do
 		before do 
+			login_as FactoryBot.create(:user_manager), :scope => :user 
+			visit root_path
 		end
 
 		scenario 'The Visitor is viewing index of their consumers' do
+			expect(page).to have_content 'Пользователь: manager'
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
@@ -53,9 +59,12 @@ feature 'Access to consumers', type: :feature do
 
 	context 'When Visitor is logged in as Client' do
 		before do 
+			login_as FactoryBot.create(:user_client), :scope => :user 
+			visit root_path
 		end
 
 		scenario 'The Visitor is viewing index of their consumers' do
+			expect(page).to have_content 'Пользователь: client'
 		end
 
 		scenario 'The Visitor can not delete a consumer from the index ' do
