@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user_admin, class: User do
     username      { 'admin' }
-    email         { 'admin@mail.no' }
+    email         { Faker::Internet.unique.email }
     password      { '123456' }
     admin_role    { true }
     manager_role  { false }
@@ -10,7 +10,7 @@ FactoryBot.define do
 
   factory :user_manager, class: User do
     username      { 'manager' }
-    email         { 'manager@mail.no' }
+    email         { Faker::Internet.unique.email }
     password      { '123456' }
     admin_role    { false }
     manager_role  { true }
@@ -19,7 +19,7 @@ FactoryBot.define do
 
   factory :user_client, class: User do
     username      { 'client' }
-    email         { 'client@mail.no' }
+    email         { Faker::Internet.unique.email }
     password      { '123456' }
     admin_role    { false }
     manager_role  { false }
