@@ -4,7 +4,7 @@ feature 'Access to consumers', type: :feature do
 	before do 
 	end
 
-	context 'When Visitor is logged in as Superadmin' do
+	context 'When Visitor is logged in as Admin' do
 		before do
 			login_as FactoryBot.create(:user_admin), :scope => :user
 			visit root_path 
