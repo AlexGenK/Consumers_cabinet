@@ -8,12 +8,12 @@ RSpec.describe User, type: :model do
   end
 
   it "is not valid with a non-unique username" do
-    create(:user_admin, email: ('other' + subject.email))
+    create(:user_admin, email: ('other' + subject.email), username: subject.username)
     expect(subject).to_not be_valid
   end
 
   it "is not valid with a non-unique email" do
-    create(:user_admin, username: ('other' + subject.username))
+    create(:user_admin, email: subject.email, username: ('other' + subject.username))
     expect(subject).to_not be_valid
   end
 end
