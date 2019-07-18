@@ -28,7 +28,6 @@ feature 'Access to consumers', type: :feature do
 
 		scenario 'The Visitor is viewing full consumers index' do
 			expect(page).to have_content "Пользователь: #{@admin.username}"
-			p page.body
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
