@@ -1,4 +1,3 @@
-console.log('Hello World from Webpacker');
 import 'bootstrap4-toggle/js/bootstrap4-toggle';
 import 'bootstrap4-toggle/css/bootstrap4-toggle.css';
 
