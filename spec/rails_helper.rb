@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require "selenium/webdriver"
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
@@ -64,3 +65,17 @@ RSpec.configure do |config|
     Warden.test_reset!
   end
 end
+
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+
+  [
+    "headless",
+    "window-size=1280x1280",
+    "disable-gpu"
+  ].each { |arg| options.add_argument(arg) }
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+Capybara.default_driver = :selenium_chrome_headless
