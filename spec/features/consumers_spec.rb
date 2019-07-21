@@ -6,7 +6,6 @@ feature 'Access to consumers', type: :feature do
 												 'Roman' => ['Olya', 'Sveta', 'Nata']}
 
 	before do
-
 		@admin = create(:user_admin)
 		@consumers = []
 
@@ -28,10 +27,14 @@ feature 'Access to consumers', type: :feature do
 		scenario 'The Visitor is viewing full consumers index' do
 			expect(page).to have_content "Пользователь: #{@admin.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 5)
+
 			@consumers.each { |cons| expect(page).to have_content cons.name }
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
+			first(:css, 'i.fas.fa-times').click
+			page.driver.browser.switch_to.alert.accept
+			expect(page).to have_xpath('//tbody/tr', count: 4)
 		end
 
 		scenario 'The Visitor is viewing a consumer info' do
@@ -57,6 +60,7 @@ feature 'Access to consumers', type: :feature do
 		scenario 'The Visitor is viewing index of their consumers' do
 			expect(page).to have_content "Пользователь: #{@manager.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 3)
+
 			@consumers.each do |cons| 
 				if cons.manager_username == @manager.username
 					expect(page).to have_content cons.name
@@ -67,6 +71,9 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
+			first(:css, 'i.fas.fa-times').click
+			page.driver.browser.switch_to.alert.accept
+			expect(page).to have_xpath('//tbody/tr', count: 2)
 		end
 
 		scenario 'The Visitor is viewing a consumer info' do
@@ -91,6 +98,7 @@ feature 'Access to consumers', type: :feature do
 		scenario 'The Visitor is viewing index of their consumers' do
 			expect(page).to have_content "Пользователь: #{@client.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 1)
+
 			@consumers.each do |cons| 
 				if cons.client_username == @client.username
 					expect(page).to have_content cons.name
@@ -101,6 +109,7 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can not delete a consumer from the index ' do
+			expect(page).to_not have_css('i.fas.fa-times')
 		end
 
 		scenario 'The Visitor is viewing a consumer info' do
