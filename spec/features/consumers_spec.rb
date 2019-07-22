@@ -48,6 +48,10 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can delete a consumer from the info screen ' do
+			click_link(selected_consumer.name)
+			click_link('Удалить')
+			page.driver.browser.switch_to.alert.accept
+			expect(page).to have_xpath('//tbody/tr', count: 4)
 		end
 
 		scenario 'Visitor can edit a consumer' do
@@ -94,6 +98,10 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can delete a consumer from the info screen ' do
+			click_link(selected_consumer.name)
+			click_link('Удалить')
+			page.driver.browser.switch_to.alert.accept
+			expect(page).to have_xpath('//tbody/tr', count: 2)
 		end
 
 		scenario 'Visitor can edit a consumer' do
@@ -137,6 +145,8 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can not delete a consumer from the info screen ' do
+			click_link(selected_consumer.name)
+			expect(page).to_not have_content 'Удалить'
 		end
 
 		scenario 'Visitor can not edit a consumer' do
