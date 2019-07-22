@@ -19,6 +19,9 @@ feature 'Access to consumers', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Admin' do
+
+		let(:selected_consumer) { @consumers[0] }
+
 		before do
 			login_as @admin, :scope => :user
 			visit root_path 
@@ -38,6 +41,10 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor is viewing a consumer info' do
+			click_link(selected_consumer.name)
+			expect(page).to have_content "Полное наименование: #{selected_consumer.full_name}"
+			expect(page).to have_content "Код ЕДРПОУ: #{selected_consumer.edrpou}"
+			expect(page).to have_content "Идентификатор 1С: #{selected_consumer.onec_id}"
 		end
 
 		scenario 'The Visitor can delete a consumer from the info screen ' do
@@ -52,6 +59,9 @@ feature 'Access to consumers', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Manager' do
+
+		let(:selected_consumer) { @consumers.find { |cons| cons.manager_username == @manager.username } }
+
 		before do 
 			login_as @manager, :scope => :user 
 			visit root_path
@@ -77,6 +87,10 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor is viewing a consumer info' do
+			click_link(selected_consumer.name)
+			expect(page).to have_content "Полное наименование: #{selected_consumer.full_name}"
+			expect(page).to have_content "Код ЕДРПОУ: #{selected_consumer.edrpou}"
+			expect(page).to have_content "Идентификатор 1С: #{selected_consumer.onec_id}"
 		end
 
 		scenario 'The Visitor can delete a consumer from the info screen ' do
@@ -90,6 +104,9 @@ feature 'Access to consumers', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Client' do
+
+		let(:selected_consumer) { @consumers.find { |cons| cons.client_username == @client.username } }
+
 		before do 
 			login_as @client, :scope => :user 
 			visit root_path
@@ -113,6 +130,10 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor is viewing a consumer info' do
+			click_link(selected_consumer.name)
+			expect(page).to have_content "Полное наименование: #{selected_consumer.full_name}"
+			expect(page).to have_content "Код ЕДРПОУ: #{selected_consumer.edrpou}"
+			expect(page).to have_content "Идентификатор 1С: #{selected_consumer.onec_id}"
 		end
 
 		scenario 'The Visitor can not delete a consumer from the info screen ' do
