@@ -74,6 +74,11 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_xpath('//tbody/tr', count: 6)
 		end
 
+		scenario 'Visitor cannot add a consumer with incorrect parameters' do
+			click_link('Новый потребитель')
+			click_button('Сохранить')
+			expect(page).to have_content "Невозможно создать потребителя"
+		end
 	end
 
 	context 'When Visitor is logged in as Manager' do
@@ -136,6 +141,12 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_content "Потребитель #{selected_consumer.name}-new успешно создан"
 			expect(page).to have_content "#{selected_consumer.onec_id + 100}"
 			expect(page).to have_xpath('//tbody/tr', count: 4)
+		end
+
+		scenario 'Visitor cannot add a consumer with incorrect parameters' do
+			click_link('Новый потребитель')
+			click_button('Сохранить')
+			expect(page).to have_content "Невозможно создать потребителя"
 		end
 	end
 
