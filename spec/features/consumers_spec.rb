@@ -65,6 +65,13 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'Visitor can add a consumer' do
+			click_link('Новый потребитель')
+			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
+			fill_in 'Номер 1С', with: "#{selected_consumer.onec_id + 100}"
+			click_button('Сохранить')
+			expect(page).to have_content "Потребитель #{selected_consumer.name}-new успешно создан"
+			expect(page).to have_content "#{selected_consumer.onec_id + 100}"
+			expect(page).to have_xpath('//tbody/tr', count: 6)
 		end
 
 	end
@@ -122,6 +129,13 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'Visitor can add a consumer' do
+			click_link('Новый потребитель')
+			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
+			fill_in 'Номер 1С', with: "#{selected_consumer.onec_id + 100}"
+			click_button('Сохранить')
+			expect(page).to have_content "Потребитель #{selected_consumer.name}-new успешно создан"
+			expect(page).to have_content "#{selected_consumer.onec_id + 100}"
+			expect(page).to have_xpath('//tbody/tr', count: 4)
 		end
 	end
 
@@ -169,6 +183,7 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'Visitor can not add a consumer' do
+			expect(page).to_not have_content 'Новый потребитель'
 		end
 	end
 end
