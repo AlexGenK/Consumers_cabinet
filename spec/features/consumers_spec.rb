@@ -55,6 +55,13 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'Visitor can edit a consumer' do
+			click_link(selected_consumer.name)
+			click_link('Редактировать')
+			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
+			click_button('Сохранить')
+			expect(page).to have_content "Потребитель #{selected_consumer.name}-new успешно отредактирован"
+			click_link('Вернуться')
+			expect(page).to have_content "#{selected_consumer.name}-new"
 		end
 
 		scenario 'Visitor can add a consumer' do
@@ -105,6 +112,13 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'Visitor can edit a consumer' do
+			click_link(selected_consumer.name)
+			click_link('Редактировать')
+			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
+			click_button('Сохранить')
+			expect(page).to have_content "Потребитель #{selected_consumer.name}-new успешно отредактирован"
+			click_link('Вернуться')
+			expect(page).to have_content "#{selected_consumer.name}-new"
 		end
 
 		scenario 'Visitor can add a consumer' do
@@ -150,6 +164,8 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'Visitor can not edit a consumer' do
+			click_link(selected_consumer.name)
+			expect(page).to_not have_content 'Редактировать'
 		end
 
 		scenario 'Visitor can not add a consumer' do
