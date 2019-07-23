@@ -64,7 +64,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_content "#{selected_consumer.name}-new"
 		end
 
-		scenario 'Visitor can add a consumer' do
+		scenario 'Visitor can add a consumer with right parameters' do
 			click_link('Новый потребитель')
 			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
 			fill_in 'Номер 1С', with: "#{selected_consumer.onec_id + 100}"
@@ -128,7 +128,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_content "#{selected_consumer.name}-new"
 		end
 
-		scenario 'Visitor can add a consumer' do
+		scenario 'Visitor can add a consumer with right parameters' do
 			click_link('Новый потребитель')
 			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
 			fill_in 'Номер 1С', with: "#{selected_consumer.onec_id + 100}"
