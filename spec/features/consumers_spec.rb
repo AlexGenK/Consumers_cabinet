@@ -2,9 +2,6 @@ require 'rails_helper'
 
 feature 'Access to consumers', type: :feature do
 
-	MANAGER_CLIENT_NAME = {'Ivan'  => ['Taya', 'Varya'],
-												 'Roman' => ['Olya', 'Sveta', 'Nata']}
-
 	before do
 		@admin = create(:user_admin)
 		@consumers = []

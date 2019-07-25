@@ -1,3 +1,6 @@
+MANAGER_CLIENT_NAME = {'Ivan'  => ['Taya', 'Varya'],
+                       'Roman' => ['Olya', 'Sveta', 'Nata']}
+
 FactoryBot.define do
   factory :user_admin, class: User do
     username      { 'admin' }
