@@ -51,7 +51,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_xpath('//tbody/tr', count: 4)
 		end
 
-		scenario 'Visitor can edit a consumer' do
+		scenario 'The Visitor can edit a consumer' do
 			click_link(selected_consumer.name)
 			click_link('Редактировать')
 			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
@@ -61,7 +61,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_content "#{selected_consumer.name}-new"
 		end
 
-		scenario 'Visitor can add a consumer with right parameters' do
+		scenario 'The Visitor can add a consumer with right parameters' do
 			click_link('Новый потребитель')
 			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
 			fill_in 'Номер 1С', with: "#{selected_consumer.onec_id + 100}"
@@ -71,7 +71,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_xpath('//tbody/tr', count: 6)
 		end
 
-		scenario 'Visitor cannot add a consumer with incorrect parameters' do
+		scenario 'The Visitor cannot add a consumer with incorrect parameters' do
 			click_link('Новый потребитель')
 			click_button('Сохранить')
 			expect(page).to have_content "Невозможно создать потребителя"
@@ -120,7 +120,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_xpath('//tbody/tr', count: 2)
 		end
 
-		scenario 'Visitor can edit a consumer' do
+		scenario 'The Visitor can edit a consumer' do
 			click_link(selected_consumer.name)
 			click_link('Редактировать')
 			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
@@ -130,7 +130,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_content "#{selected_consumer.name}-new"
 		end
 
-		scenario 'Visitor can add a consumer with right parameters' do
+		scenario 'The Visitor can add a consumer with right parameters' do
 			click_link('Новый потребитель')
 			fill_in 'Наименование', with: "#{selected_consumer.name}-new"
 			fill_in 'Номер 1С', with: "#{selected_consumer.onec_id + 100}"
@@ -140,7 +140,7 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to have_xpath('//tbody/tr', count: 4)
 		end
 
-		scenario 'Visitor cannot add a consumer with incorrect parameters' do
+		scenario 'The Visitor cannot add a consumer with incorrect parameters' do
 			click_link('Новый потребитель')
 			click_button('Сохранить')
 			expect(page).to have_content "Невозможно создать потребителя"
@@ -185,12 +185,12 @@ feature 'Access to consumers', type: :feature do
 			expect(page).to_not have_content 'Удалить'
 		end
 
-		scenario 'Visitor can not edit a consumer' do
+		scenario 'The Visitor can not edit a consumer' do
 			click_link(selected_consumer.name)
 			expect(page).to_not have_content 'Редактировать'
 		end
 
-		scenario 'Visitor can not add a consumer' do
+		scenario 'The Visitor can not add a consumer' do
 			expect(page).to_not have_content 'Новый потребитель'
 		end
 	end
