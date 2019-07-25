@@ -79,3 +79,4 @@ Capybara.register_driver :selenium_chrome_headless do |app|
 end
 
 Capybara.default_driver = :selenium_chrome_headless
+Capybara.server = :puma, { Silent: true }
