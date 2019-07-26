@@ -16,6 +16,14 @@ feature 'Access to contracts of consumer', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Admin' do
+
+		let(:selected_consumer) { @consumers[0] }
+
+		before do
+			login_as @admin, :scope => :user
+			visit consumer_path(selected_consumer) 
+		end
+
 		scenario 'The Visitor can viewing index of contracts' do
 		end
 
@@ -30,6 +38,14 @@ feature 'Access to contracts of consumer', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Manager' do
+
+		let(:selected_consumer) { @consumers.find { |cons| cons.manager_username == @manager.username } }
+
+		before do 
+			login_as @manager, :scope => :user 
+			visit consumer_path(selected_consumer)
+		end
+
 		scenario 'The Visitor can viewing index of contracts' do
 		end
 
@@ -44,6 +60,14 @@ feature 'Access to contracts of consumer', type: :feature do
 	end
 
 	context 'When Visitor is logged in as Consumer' do
+
+		let(:selected_consumer) { @consumers.find { |cons| cons.client_username == @client.username } }
+
+		before do 
+			login_as @client, :scope => :user 
+			visit consumer_path(selected_consumer)
+		end
+
 		scenario 'The Visitor can viewing index of contracts' do
 		end
 
