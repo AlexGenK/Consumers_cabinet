@@ -32,6 +32,7 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
+			expect(page).to have_xpath('//tbody/tr', count: 5)
 			first(:css, 'i.fas.fa-times').click
 			page.driver.browser.switch_to.alert.accept
 			expect(page).to have_xpath('//tbody/tr', count: 4)
@@ -101,6 +102,7 @@ feature 'Access to consumers', type: :feature do
 		end
 
 		scenario 'The Visitor can delete a consumer from the index ' do
+			expect(page).to have_xpath('//tbody/tr', count: 3)
 			first(:css, 'i.fas.fa-times').click
 			page.driver.browser.switch_to.alert.accept
 			expect(page).to have_xpath('//tbody/tr', count: 2)
