@@ -34,9 +34,11 @@ feature 'Access to contracts of consumer', type: :feature do
 
 		scenario 'The Visitor can delete a contract from the index' do
 			expect(page).to have_xpath('//tbody/tr', count: 3)
+			expect(page).to have_content(selected_contract.number)
 			first('i.test-delete-contract').click
 			page.driver.browser.switch_to.alert.accept
 			expect(page).to have_xpath('//tbody/tr', count: 2)
+			expect(page).to_not have_content(selected_contract.number)
 		end
 
 		scenario 'The Visitor can edit a contract' do
@@ -71,9 +73,11 @@ feature 'Access to contracts of consumer', type: :feature do
 
 		scenario 'The Visitor can delete a contract from the index' do
 			expect(page).to have_xpath('//tbody/tr', count: 3)
+			expect(page).to have_content(selected_contract.number)
 			first('i.test-delete-contract').click
 			page.driver.browser.switch_to.alert.accept
 			expect(page).to have_xpath('//tbody/tr', count: 2)
+			expect(page).to_not have_content(selected_contract.number)
 		end
 
 		scenario 'The Visitor can edit a contract' do
