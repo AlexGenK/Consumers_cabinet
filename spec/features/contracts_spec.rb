@@ -51,6 +51,12 @@ feature 'Access to contracts of consumer', type: :feature do
 		end
 
 		scenario 'The Visitor can add a contract' do
+			expect(page).to have_xpath('//tbody/tr', count: 3)
+			expect(page).to_not have_content('Contract-000')
+			fill_in 'Номер:', with: 'Contract-000'
+			click_button 'Сохранить'
+			expect(page).to have_xpath('//tbody/tr', count: 4)
+			expect(page).to have_content('Contract-000')
 		end
 	end
 
@@ -90,6 +96,12 @@ feature 'Access to contracts of consumer', type: :feature do
 		end
 
 		scenario 'The Visitor can add a contract' do
+			expect(page).to have_xpath('//tbody/tr', count: 3)
+			expect(page).to_not have_content('Contract-000')
+			fill_in 'Номер:', with: 'Contract-000'
+			click_button 'Сохранить'
+			expect(page).to have_xpath('//tbody/tr', count: 4)
+			expect(page).to have_content('Contract-000')
 		end
 	end
 
@@ -118,6 +130,8 @@ feature 'Access to contracts of consumer', type: :feature do
 		end
 
 		scenario 'The Visitor can not add a contract' do
+			expect(page).to_not have_content('Добавить договор')
+			expect(page).to_not have_content('Сохранить')
 		end
 	end
 end
