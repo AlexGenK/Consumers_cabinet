@@ -18,6 +18,7 @@ feature 'Access to contracts of consumer', type: :feature do
 	context 'When Visitor is logged in as Admin' do
 
 		let(:selected_consumer) { @consumers[0] }
+		let(:selected_contract) { selected_consumer.contracts[0] }
 
 		before do
 			login_as @admin, :scope => :user
@@ -39,6 +40,12 @@ feature 'Access to contracts of consumer', type: :feature do
 		end
 
 		scenario 'The Visitor can edit a contract' do
+			expect(page).to have_content(selected_contract.number)
+			first('i.test-edit-contract').click
+			fill_in 'Номер:', with: 'Contract-000'
+			click_button 'Сохранить'
+			expect(page).to_not have_content(selected_contract.number)
+			expect(page).to have_content('Contract-000')
 		end
 
 		scenario 'The Visitor can add a contract' do
@@ -48,6 +55,7 @@ feature 'Access to contracts of consumer', type: :feature do
 	context 'When Visitor is logged in as Manager' do
 
 		let(:selected_consumer) { @consumers.find { |cons| cons.manager_username == @manager.username } }
+		let(:selected_contract) { selected_consumer.contracts[0] }
 
 		before do 
 			login_as @manager, :scope => :user 
@@ -69,6 +77,12 @@ feature 'Access to contracts of consumer', type: :feature do
 		end
 
 		scenario 'The Visitor can edit a contract' do
+			expect(page).to have_content(selected_contract.number)
+			first('i.test-edit-contract').click
+			fill_in 'Номер:', with: 'Contract-000'
+			click_button 'Сохранить'
+			expect(page).to_not have_content(selected_contract.number)
+			expect(page).to have_content('Contract-000')
 		end
 
 		scenario 'The Visitor can add a contract' do
@@ -96,6 +110,7 @@ feature 'Access to contracts of consumer', type: :feature do
 		end
 
 		scenario 'The Visitor can not edit a contract' do
+			expect(page).to_not have_css('i.test-edit-contract')
 		end
 
 		scenario 'The Visitor can not add a contract' do
