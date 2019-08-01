@@ -28,7 +28,9 @@ feature 'Access to contract counters', type: :feature do
 		end
 
 		scenario 'The Visitor can viewing index of counters', :focus do
-
+			selected_contract.counters.each do |counter|
+				expect(page).to have_content "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}."
+			end
 		end
 
 		scenario 'The Visitor can delete a counter' do
@@ -57,7 +59,9 @@ feature 'Access to contract counters', type: :feature do
 		end
 
 		scenario 'The Visitor can viewing index of counters' do
-
+			selected_contract.counters.each do |counter|
+				expect(page).to have_content "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}."
+			end
 		end
 
 		scenario 'The Visitor can delete a counter' do
@@ -86,7 +90,9 @@ feature 'Access to contract counters', type: :feature do
 		end
 
 		scenario 'The Visitor can viewing index of counters' do
-
+			selected_contract.counters.each do |counter|
+				expect(page).to have_content "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}."
+			end
 		end
 
 		scenario 'The Visitor can not delete a counter`' do
