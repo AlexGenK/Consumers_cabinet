@@ -27,7 +27,6 @@ feature 'Access to consumers', type: :feature do
 		scenario 'The Visitor is viewing full consumers index' do
 			expect(page).to have_content "Пользователь: #{@admin.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 5)
-
 			@consumers.each { |cons| expect(page).to have_content cons.name }
 		end
 
@@ -91,7 +90,6 @@ feature 'Access to consumers', type: :feature do
 		scenario 'The Visitor is viewing index of their consumers' do
 			expect(page).to have_content "Пользователь: #{@manager.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 3)
-
 			@consumers.each do |cons| 
 				if cons.manager_username == @manager.username
 					expect(page).to have_content cons.name
@@ -161,7 +159,6 @@ feature 'Access to consumers', type: :feature do
 		scenario 'The Visitor is viewing index of their consumers' do
 			expect(page).to have_content "Пользователь: #{@client.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 1)
-
 			@consumers.each do |cons| 
 				if cons.client_username == @client.username
 					expect(page).to have_content cons.name

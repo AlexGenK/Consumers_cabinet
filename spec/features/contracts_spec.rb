@@ -28,7 +28,6 @@ feature 'Access to contracts of consumer', type: :feature do
 		scenario 'The Visitor can viewing index of contracts' do
 			expect(page).to have_content "Пользователь: #{@admin.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 3)
-
 			selected_consumer.contracts.each { |contr| expect(page).to have_content contr.number }
 		end
 
@@ -73,7 +72,6 @@ feature 'Access to contracts of consumer', type: :feature do
 		scenario 'The Visitor can viewing index of contracts' do
 			expect(page).to have_content "Пользователь: #{@manager.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 3)
-
 			selected_consumer.contracts.each { |contr| expect(page).to have_content contr.number }
 		end
 
@@ -117,7 +115,6 @@ feature 'Access to contracts of consumer', type: :feature do
 		scenario 'The Visitor can viewing index of contracts' do
 			expect(page).to have_content "Пользователь: #{@client.username}"
 			expect(page).to have_xpath('//tbody/tr', count: 3)
-
 			selected_consumer.contracts.each { |contr| expect(page).to have_content contr.number }
 		end
 
