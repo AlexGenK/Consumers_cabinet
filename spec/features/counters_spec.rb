@@ -27,14 +27,19 @@ feature 'Access to contract counters', type: :feature do
 			click_link selected_contract.number
 		end
 
-		scenario 'The Visitor can viewing index of counters', :focus do
+		scenario 'The Visitor can viewing index of counters' do
 			selected_contract.counters.each do |counter|
-				expect(page).to have_content "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}."
+				expect(page).to have_content "Счет №#{counter.account}, счетчик №#{counter.number}, КУ=#{counter.ratio}."
 			end
 		end
 
 		scenario 'The Visitor can delete a counter' do
-
+			expect(page).to have_content('счетчик №', count: 3)
+			expect(page).to have_content(selected_counter.number)
+			first('i.test-delete-counter').click
+			page.driver.browser.switch_to.alert.accept
+			expect(page).to have_content('счетчик №', count: 2)
+			expect(page).to_not have_content("счетчик №#{selected_counter.number}")
 		end
 
 		scenario 'The Visitor can edit a counter' do
@@ -60,12 +65,17 @@ feature 'Access to contract counters', type: :feature do
 
 		scenario 'The Visitor can viewing index of counters' do
 			selected_contract.counters.each do |counter|
-				expect(page).to have_content "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}."
+				expect(page).to have_content "Счет №#{counter.account}, счетчик №#{counter.number}, КУ=#{counter.ratio}."
 			end
 		end
 
 		scenario 'The Visitor can delete a counter' do
-
+			expect(page).to have_content('счетчик №', count: 3)
+			expect(page).to have_content(selected_counter.number)
+			first('i.test-delete-counter').click
+			page.driver.browser.switch_to.alert.accept
+			expect(page).to have_content('счетчик №', count: 2)
+			expect(page).to_not have_content("счетчик №#{selected_counter.number}")
 		end
 
 		scenario 'The Visitor can edit a counter' do
@@ -91,12 +101,12 @@ feature 'Access to contract counters', type: :feature do
 
 		scenario 'The Visitor can viewing index of counters' do
 			selected_contract.counters.each do |counter|
-				expect(page).to have_content "Счет №#{counter.account}, cчетчик №#{counter.number}, КУ=#{counter.ratio}."
+				expect(page).to have_content "Счет №#{counter.account}, счетчик №#{counter.number}, КУ=#{counter.ratio}."
 			end
 		end
 
-		scenario 'The Visitor can not delete a counter`' do
-
+		scenario 'The Visitor can not delete a counter' do
+			expect(page).to_not have_css('i.test-delete-counter')
 		end
 
 		scenario 'The Visitor can not edit a counter' do
