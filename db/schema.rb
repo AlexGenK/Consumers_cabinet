@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_184159) do
   create_table "payments", force: :cascade do |t|
     t.string "company"
     t.integer "edrpou"
-    t.integer "account"
+    t.string "account"
     t.string "bank"
     t.integer "mfo"
     t.datetime "created_at", null: false
