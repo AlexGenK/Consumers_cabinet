@@ -6,6 +6,12 @@ class Admin::PaymentsController < ApplicationController
   end
 
   def update
+    if @payment.update(payment_params)
+      flash[:notice] = "Платежные реквизиты отредактированы" 
+      redirect_to consumers_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -14,7 +20,7 @@ class Admin::PaymentsController < ApplicationController
     @payment = Payment.find(1)
   end
 
-  def user_params
+  def payment_params
     params.require(:payment).permit(:company, :edrpou, :acccount, :bank, :mfo)
   end
 end
