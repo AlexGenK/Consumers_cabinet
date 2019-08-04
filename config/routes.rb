@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'filling_plan',           to: 'filling_plan#set_params'
     post 'filling_plan',          to: 'filling_plan#start'
     get 'statistic',              to: 'statistic#consumers_counter'
+    resource :payment
   end
 
   root to: 'consumers#index'
