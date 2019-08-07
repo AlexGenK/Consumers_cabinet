@@ -17,7 +17,7 @@ class Admin::PaymentsController < ApplicationController
   private
 
   def set_payment
-    @payment = Payment.find(1)
+    @payment = Payment.first
   end
 
   def payment_params
