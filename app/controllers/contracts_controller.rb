@@ -28,6 +28,7 @@ class ContractsController < ApplicationController
 
   def show
     @counters = @contract.counters.all.order(:number)
+    @payment = Payment.first
     @counters_power={}
     @all_power_active, @all_power_reactive, @all_power_generation = 0, 0, 0
     @counters.each do |item|

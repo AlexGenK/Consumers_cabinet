@@ -27,6 +27,7 @@ class ConsumersController < ApplicationController
     @plan_consumption = @consumer.current_consumption
     @contracts = @consumer.contracts.all.order(:number) 
     @contract = @consumer.contracts.new
+    @payment = Payment.first
   end
 
   def create

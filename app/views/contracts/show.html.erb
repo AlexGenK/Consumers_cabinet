@@ -4,8 +4,9 @@
 		<p>Полное наименование: <em><%= @consumer.full_name %></em></p>
 		<p>Код ЕДРПОУ: <em><%= @consumer.edrpou %></em></p>
 		<p>Договор: <em>№<%= @consumer.dog_eh_num %> от <%= @consumer.dog_eh_date.strftime("%d.%m.%Y") %></em></p>
-		<p>Реквизиты для оплаты:<br><em>ООО "Энерго Х",<br>ЕДРПОУ: 38000735,<br>т/сч 2600281951118,<br>
-		ПАО "Банк "Грант", МФО 351607</em></p>
+		<p>Реквизиты для оплаты:<br>
+		<em><%= @payment.company %>,<br>ЕДРПОУ: <%= @payment.edrpou %>,<br>т/сч <%= @payment.account %>,
+		<br><%= @payment.bank %>, <br>МФО <%= @payment.mfo %></em></p>
 		<p>Идентификатор 1С: <em><%= @consumer.onec_id %></em></p>
 		<%= link_to @consumer, class: "btn btn-outline-dark btn-block mb-2" do %>
 			<i class="fas fa-undo-alt"></i> Вернуться
