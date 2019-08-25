@@ -20,7 +20,39 @@ module Faker
   class Company
     class << self
       def edrpou
-        12345678
+        edrpou_keyless=[]
+        edrpou_keyless << rand(1..9)
+        6.times { edrpou_keyless << rand(0..9) }
+        edrpou_keyless << edrpou_keygen(edrpou_keyless)
+        edrpou_keyless.reduce{|n, d| n * 10 + d}
+      end
+
+      def edrpou_check(value)
+        edrpou_keygen(value.to_s.chars.map(&:to_i)[0..6]) == value.to_s.chars.map(&:to_i)[7]
+      end
+
+      private
+
+      def weight_sum(value, weight)
+        sum = 0
+        value.each_with_index do |val, i|
+          sum = sum + val * weight[i]
+        end
+        sum
+      end
+
+      def edrpou_keygen(edrpou_keyless)
+        if (edrpou_keyless[0] > 2) && (edrpou_keyless[0] < 6)
+          weight = [[7, 1, 2, 3, 4, 5, 6], [9, 3, 4, 5, 6, 7, 8]]
+        else
+          weight = [[1, 2, 3, 4, 5, 6, 7], [3, 4, 5, 6, 7, 8, 9]]
+        end
+
+        sum = weight_sum(edrpou_keyless, weight[0])
+        if (sum % 11) > 9
+          sum = weight_sum(edrpou_keyless, weight[1])
+        end
+        sum % 11
       end
     end
   end
