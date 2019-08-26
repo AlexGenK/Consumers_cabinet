@@ -35,11 +35,9 @@ feature 'Access to contract counters', type: :feature do
 
 		scenario 'The Visitor can delete a counter' do
 			expect(page).to have_content('счетчик №', count: 3)
-			expect(page).to have_content(selected_counter.number)
 			first('i.test-delete-counter').click
 			page.driver.browser.switch_to.alert.accept
 			expect(page).to have_content('счетчик №', count: 2)
-			expect(page).to_not have_content("счетчик №#{selected_counter.number}")
 		end
 
 		scenario 'The Visitor can edit a counter' do
@@ -71,11 +69,9 @@ feature 'Access to contract counters', type: :feature do
 
 		scenario 'The Visitor can delete a counter' do
 			expect(page).to have_content('счетчик №', count: 3)
-			expect(page).to have_content(selected_counter.number)
 			first('i.test-delete-counter').click
 			page.driver.browser.switch_to.alert.accept
 			expect(page).to have_content('счетчик №', count: 2)
-			expect(page).to_not have_content("счетчик №#{selected_counter.number}")
 		end
 
 		scenario 'The Visitor can edit a counter' do
