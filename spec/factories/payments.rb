@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :payment do
-    company { "MyString" }
-    edrpou { Faker::Company.edrpou }
-    account { 1234567890 }
-    bank { "MyString" }
-    mfo { Faker::Bank.mfo }
+    company { Faker::Company.name }
+    edrpou  { Faker::Company.edrpou }
+    account { Faker::Bank.account_number(14) }
+    bank    { Faker::Bank.name }
+    mfo     { Faker::Bank.mfo }
   end
 end
