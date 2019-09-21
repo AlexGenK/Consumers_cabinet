@@ -21,6 +21,6 @@ class Admin::PaymentsController < ApplicationController
   end
 
   def payment_params
-    params.require(:payment).permit(:company, :edrpou, :acccount, :bank, :mfo)
+    params.require(:payment).permit(:company, :edrpou, :account, :bank, :mfo)
   end
 end
