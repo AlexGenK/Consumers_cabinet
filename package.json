@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.0.7",
-    "bootstrap4-toggle": "^3.4.0"
+    "bootstrap4-toggle": "3.5.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.4.1"
