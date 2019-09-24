@@ -10,7 +10,7 @@ class ThisIsIbanValidator < ActiveModel::EachValidator
   protected
 
   def length_correct?(value)
-  	value.size == 29
+  	value&.size == 29
   end
 
   def mod97_correct?(value)
