@@ -5,8 +5,8 @@
 		<p>Код ЕДРПОУ: <em><%= @consumer.edrpou %></em></p>
 		<p>Договор: <em>№<%= @consumer.dog_eh_num %> от <%= @consumer.dog_eh_date.strftime("%d.%m.%Y") %></em></p>
 		<p>Реквизиты для оплаты:<br>
-		<em><%= @payment.company %>,<br>ЕДРПОУ: <%= @payment.edrpou %>,<br>т/сч <%= @payment.account %>,
-		<br><%= @payment.bank %>, <br>МФО <%= @payment.mfo %></em></p>
+		<em><%= @payment.company %>,<br>ЕДРПОУ: <%= @payment.edrpou %>,<br>расчетный счет: <%= @payment.account %>,
+		<br><%= @payment.bank %>, <br>МФО: <%= @payment.mfo %></em></p>
 		<p>Идентификатор 1С: <em><%= @consumer.onec_id %></em></p>
 		<%= link_to consumers_path, class: "btn btn-outline-dark btn-block mb-2" do %>
 			<i class="fas fa-undo-alt"></i> Вернуться
