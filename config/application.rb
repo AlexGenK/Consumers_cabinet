@@ -18,7 +18,7 @@ module ConsumersCabinet
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
       class_attr_index = html_tag.index 'class="'
 
       if class_attr_index
@@ -26,6 +26,11 @@ module ConsumersCabinet
       else
         html_tag.insert html_tag.index('>'), ' class="is-invalid"'
       end   
+    }
+
+    # Remove ActiveStorage routes
+    initializer(:remove_activestorage_routes, after: :add_routing_paths) {|app|
+      app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
     }
   end
 end
