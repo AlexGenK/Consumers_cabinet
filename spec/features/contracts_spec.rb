@@ -12,6 +12,7 @@ feature 'Access to contracts of consumer', type: :feature do
 				@client = create(:user_client, username: cli_name)
 				@consumers << create(:consumer, client_username: cli_name, manager_username: man_name)
 			end
+			@consumers.sort!			
 		end
 	end
 
