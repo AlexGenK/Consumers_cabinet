@@ -1,14 +1,14 @@
 FactoryBot.define do
   factory :consumer, class: Consumer do
-    sequence(:name)         { |n| "#{n} LTD" }
-    edrpou                  { '01234567' }
+    name                    { Faker::Company.name }
+    edrpou                  { Faker::Company.edrpou }
     dog_eh_num              { '1/2' }
     dog_eh_date             { '12/05/2005' }
     sequence(:onec_id)      { |n| n }
     client_username         { build(:user_client).username }
     manager_username        { build(:user_manager).username }
     report_date             { 25 }
-    sequence(:full_name)    { |n| "#{n} LTD & Co" }
+    sequence(:full_name)    { |n| "#{n} #{Faker::Company.name}" }
 
     after :create do |consumer|
         create :current_consumption, consumer: consumer
