@@ -27,7 +27,7 @@ module Faker
         edrpou_keyless.reduce { |n, d| n * 10 + d }
       end
 
-      def edrpou_check(value)
+      def edrpou_correct?(value)
         edrpou_keygen(value.to_s.chars.map(&:to_i)[0..6]) == value.to_s.chars.map(&:to_i)[7]
       end
 
