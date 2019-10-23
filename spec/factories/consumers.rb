@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :consumer, class: Consumer do
-    name                    { Faker::Company.name }
+    name                    { Faker::Company.unique.name }
     edrpou                  { Faker::Company.edrpou }
     dog_eh_num              { '1/2' }
     dog_eh_date             { '12/05/2005' }
