@@ -23,6 +23,16 @@ RSpec.describe Payment, type: :model do
     expect(subject).to_not be_valid
   end
 
+  it 'is not valid if the account length does not comply with the IBAN format' do
+    subject.account += '0'
+    expect(subject).to_not be_valid
+  end
+
+  it 'is not valid if the account numbers does not comply with the IBAN format' do
+    subject.account[10] = ((subject.account[10].to_i + 1) % 10).to_s
+    expect(subject).to_not be_valid
+  end
+
   it "is not valid with empty bank" do
     subject.bank = nil
     expect(subject).to_not be_valid
