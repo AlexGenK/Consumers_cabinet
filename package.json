@@ -2,10 +2,10 @@
   "name": "Consumers_cabinet",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "4.2.2",
-    "bootstrap4-toggle": "3.5.0"
+    "@rails/webpacker": "5.1.1",
+    "bootstrap4-toggle": "3.6.1"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.10.0"
   }
 }
