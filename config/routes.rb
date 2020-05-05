@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         resources :powers
       end
     end
+    resources :certificates, only: [:show]
   end
 
   namespace :admin do
