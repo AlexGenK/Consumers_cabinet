@@ -1,7 +1,7 @@
 class Consumer < ApplicationRecord
   has_many :contracts, dependent: :destroy
   has_many :previous_consumptions, dependent: :destroy
-  has_many :certificates, dependent: :destroy
+  has_one :certificate, dependent: :destroy
   has_one :current_consumption, dependent: :destroy
 
   validates :name, :onec_id, presence: true
