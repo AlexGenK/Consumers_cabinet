@@ -7,18 +7,38 @@ class Admin::FillingCertificatesController < ApplicationController
   require 'date'
 
   def start
-    Net::FTP.open(ENV['CONSUMERS_CABINET_FTP_HOST'], 
+    @add_certs = []
+    @cons_with_cert = Consumer.where(can_get_certificate: true)
+    @cert_list = get_newest_certs
+    @cons_with_cert.each do |consumer|
+      if @cert_list[consumer.edrpou]
+        @cert = consumer.build_certificate(date: @cert_list[consumer.edrpou][:date])
+        @cert.save!
+        Net::FTP.open(ENV['CONSUMERS_CABINET_FTP_HOST'], 
                   ENV['CONSUMERS_CABINET_FTP_USERNAME'],
-                  ENV['CONSUMERS_CABINET_FTP_PASSWORD'],) do |ftp|
-      @files = ftp.nlst.map { |filename| parse_filename(filename) }
+                  ENV['CONSUMERS_CABINET_FTP_PASSWORD'],) do |ftp| 
+          ftp.getbinaryfile(@cert_list[consumer.edrpou][:filename], 'public/akt.xls')
+        end
+        @cert.print_form.attach(io: File.open('public/file.xls'), filename: 'akt.xls', content_type: 'application/vnd.ms-excel')
+        @add_certs << "Потребитель #{consumer.name} (#{consumer.edrpou}) - акт от #{@cert_list[consumer.edrpou][:date]}"
+      end
     end
   end
 
   private
 
-  def parse_filename(filename)
-    parse_result = {date: parse_date(filename), consumer_id: parse_id(filename)}
-    return parse_result
+  def get_newest_certs
+    files = {}
+    Net::FTP.open(ENV['CONSUMERS_CABINET_FTP_HOST'], 
+                  ENV['CONSUMERS_CABINET_FTP_USERNAME'],
+                  ENV['CONSUMERS_CABINET_FTP_PASSWORD'],) do |ftp| 
+      ftp.nlst.each do |filename|
+        if !files[parse_id(filename)] || files[parse_id(filename)][:date] < parse_date(filename)
+          files[parse_id(filename)] = {date: parse_date(filename), filename: filename}
+        end
+      end
+    end
+    return files
   end
 
   def parse_date(filename)
