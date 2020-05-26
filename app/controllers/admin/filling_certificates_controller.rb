@@ -19,7 +19,7 @@ class Admin::FillingCertificatesController < ApplicationController
                   ENV['CONSUMERS_CABINET_FTP_PASSWORD'],) do |ftp| 
           ftp.getbinaryfile(@cert_list[consumer.edrpou][:filename], 'public/akt.xls')
         end
-        @cert.print_form.attach(io: File.open('public/file.xls'), filename: 'akt.xls', content_type: 'application/vnd.ms-excel')
+        @cert.print_form.attach(io: File.open('public/akt.xls'), filename: 'akt.xls', content_type: 'application/vnd.ms-excel')
         @add_certs << "Потребитель #{consumer.name} (#{consumer.edrpou}) - акт от #{@cert_list[consumer.edrpou][:date]}"
       end
     end
