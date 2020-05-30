@@ -28,6 +28,7 @@ class ConsumersController < ApplicationController
     @contracts = @consumer.contracts.all.order(:number) 
     @contract = @consumer.contracts.new
     @payment = Payment.first
+    @certificate = @consumer.certificate
   end
 
   def create
