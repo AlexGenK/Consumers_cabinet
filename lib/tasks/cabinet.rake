@@ -36,4 +36,11 @@ namespace :cabinet do
       Admin::FillingCertificatesController.new.start 
     end
   end
+
+  desc "Delete all certificates"
+  task del_certs: :environment do
+    Certificate.delete_all
+    Service.first.update(last_cert_time: "")
+  end
+
 end
