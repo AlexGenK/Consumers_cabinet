@@ -42,7 +42,7 @@ class Admin::FillingCertificatesController < ApplicationController
   end
 
   def parse_date(filename)
-    filename =~ /(\d\d\.\d\d\.\d\d)_\d+/
+    filename =~ /(\d\d\.\d\d\.\d\d)_\d*/
     DateTime.strptime($1, '%d.%m.%y')
   end
 
