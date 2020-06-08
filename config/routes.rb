@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         resources :powers
       end
     end
+    resources :certificates, only: [:show]
   end
 
   namespace :admin do
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     post 'filling_consumptions',  to: 'filling_consumptions#start'
     get 'filling_plan',           to: 'filling_plan#set_params'
     post 'filling_plan',          to: 'filling_plan#start'
+    get 'filling_certificates',   to: 'filling_certificates#start'
     get 'statistic',              to: 'statistic#consumers_counter'
     resource :payment
   end

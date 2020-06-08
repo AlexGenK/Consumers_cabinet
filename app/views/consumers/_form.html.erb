@@ -32,6 +32,10 @@
 		<%= f.label :dog_eh_date, "от" %>
 		<%= f.date_field :dog_eh_date, class: "form-control" %>
 		</div>
+		<div class="form-group col-md-3">
+		<%= f.label :can_get_certificate, "Может получить акт" %></br>
+		<%= f.check_box :can_get_certificate, class: "form-control", data: { toggle: 'toggle', on: 'Да', off: 'Нет', onstyle: 'dark' } %>
+		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">

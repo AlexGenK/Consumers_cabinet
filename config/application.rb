@@ -27,10 +27,5 @@ module ConsumersCabinet
         html_tag.insert html_tag.index('>'), ' class="is-invalid"'
       end   
     }
-
-    # Remove ActiveStorage routes
-    initializer(:remove_activestorage_routes, after: :add_routing_paths) {|app|
-      app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
-    }
   end
 end
