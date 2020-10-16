@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     get 'filling_plan',           to: 'filling_plan#set_params'
     post 'filling_plan',          to: 'filling_plan#start'
     get 'filling_certificates',   to: 'filling_certificates#start'
+    get 'mass_change_cid',        to: 'mass_change_cid#set_params'
+    post 'mass_change_cid',       to: 'mass_change_cid#start'
     get 'statistic',              to: 'statistic#consumers_counter'
     resource :payment
   end
