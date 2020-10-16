@@ -14,9 +14,11 @@ class Admin::MassChangeCidController < ApplicationController
       @log = []
       csv.each do |record|
         @consumer = Consumer.find_by(onec_id: record[0].to_i)
-        @consumer.onec_id = record[1].to_i
-        @consumer.save!
-        @log << "#{@consumer.name} #{record[0]} => #{record[1]}"
+        if @consumer
+          @consumer.onec_id = record[1].to_i
+          @consumer.save!
+          @log << "#{@consumer.name} #{record[0]} => #{record[1]}"
+        end
       end
     rescue
       flash[:alert] = 'Ошибка при импорте записей из файла!'
