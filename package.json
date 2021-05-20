@@ -2,7 +2,7 @@
   "name": "Consumers_cabinet",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.1.1",
+    "@rails/webpacker": "5.4.0",
     "bootstrap4-toggle": "3.6.1"
   },
   "devDependencies": {
