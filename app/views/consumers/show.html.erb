@@ -83,7 +83,7 @@
 				<% if @consumer.can_get_certificate %>
 					<% if @certificate %>
 						<%= link_to rails_blob_path(@certificate.print_form, disposition: "attachment"), class: "btn btn-outline-dark btn-block mb-6" do %>
-							<i class="fas fa-file-download"></i> <%= "Скачать акт за #{l(Date.today.months_ago(1), format: '%B')}" %>
+							<i class="fas fa-file-download"></i> <%= "Скачать акт за #{l(@certificate.date.months_ago(1), format: '%B')}" %>
 						<% end %>
 					<% else %>
 						<button type="button" class="btn btn-outline-dark btn-block mb-6" disabled><i class="fas fa-file-download"></i> <%= "Акт за #{l(Date.today.months_ago(1), format: '%B')} отсутствует" %></button>
